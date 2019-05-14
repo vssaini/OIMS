@@ -1,0 +1,12 @@
+﻿@using OIMS.Reports
+
+@Html.DevExpress().ReportViewer(settings =>
+{
+    settings.Name = "reportViewerShelterDetail";
+    settings.Report = (ShelterDetail)ViewData["Report"];
+    settings.Theme = Common.ReportTheme;
+    
+    settings.CallbackRouteValues = new { Controller = "Supervisor", Action = "ShelterDetailReport" };
+    settings.ExportRouteValues = new { Controller = "Supervisor", Action = "ShelterDetailExport" };
+}).GetHtml()
+

@@ -1,0 +1,37 @@
+﻿@using OIMS.Repository.Manager
+<h2 class="h2Requests">@Manager.TabRequests</h2>
+
+@using (Html.BeginForm("Requests", "Manager", FormMethod.Get, new { name = "form-Requests", id = "form-Requests" }))
+{
+    <script type="text/javascript">
+        //<![CDATA[
+        
+        function OnGridRowClick(s, e)
+        {
+            var rowIndex = e.visibleIndex;
+            s.GetRowValues(rowIndex, 'RequestId;Status;RequestorId', OnGetRowValues);
+        }
+
+        function OnGetRowValues(colValues)
+        {
+            ShowDetails(colValues[0], colValues[1], colValues[2]);
+        }
+        // ]]>
+    </script>
+    
+    <div style="width: 100%">
+        <div class="divLeft">
+            <div class="alert alert-success margTop10">
+                <span class="padRight10">
+                    <i class="info"></i></span>@Manager.Info
+            </div>
+            @Html.Partial("Grid/_GridForRequests", RequestsRepository.Requests)
+        </div>
+
+        <div id="reqSummary" class="divRight margTop10" data-href="@Url.Action("RequestDetails", "Manager")">
+        </div>
+    </div>
+   
+    @Scripts.Render("~/bundles/oims-m-req")
+}
+

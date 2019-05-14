@@ -1,0 +1,13 @@
+﻿@Scripts.Render("~/bundles/jqueryMix")
+
+<!--DevExpress components styles-->
+@Html.DevExpress().GetStyleSheets(
+new StyleSheet { ExtensionSuite = ExtensionSuite.GridView, Theme = Common.GlobalTheme },
+new StyleSheet { ExtensionSuite = ExtensionSuite.GridView, Theme = Common.SubTheme },
+new StyleSheet { ExtensionSuite = ExtensionSuite.Report, Theme = Common.ReportTheme }
+)
+
+<!--DevExpress components scripts-->
+@Html.DevExpress().GetScripts(
+new Script { ExtensionSuite = ExtensionSuite.GridView },
+new Script { ExtensionSuite = ExtensionSuite.Report })

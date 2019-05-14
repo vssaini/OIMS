@@ -1,0 +1,36 @@
+﻿@{
+    var grid = Html.DevExpress().GridView(
+        settings =>
+        {
+            settings.Name = "gvShelterItems";
+            settings.KeyFieldName = "ShelterDescKey";
+            settings.CallbackRouteValues = new { Controller = "Requestor", Action = "GridForShelterItems"};
+
+            // Styles
+            settings.Theme = Common.GlobalTheme;
+            settings.Width = Unit.Percentage(100);
+            settings.Styles.CommandColumn.Spacing = Unit.Pixel(10);
+
+            // Show pager
+            settings.SettingsPager.Visible = true;
+            settings.SettingsPager.PageSize = 15;
+
+            // Enable sorting by columns
+            settings.SettingsBehavior.AllowSort = true;
+
+            // Columns
+            settings.Columns.Add("ItemId").Caption = Requestor.Nr_GridId;
+            settings.Columns.Add("ItemName").Caption = Requestor.Nr_GridItemName;
+            settings.Columns.Add("Size").Caption = Requestor.Nr_GridSize;
+            settings.Columns.Add("Marking").Caption = Requestor.Nr_GridMarking;
+            settings.Columns.Add("ItemQuantity").Caption = Requestor.Nr_GridQtyPerShelter;
+            settings.Columns.Add("EnterQuantity").Caption = Requestor.Nr_GridQuantity;
+        });
+
+    if (TempData["ErrorMessage"] != null)
+    {
+        grid.SetEditErrorText((string)TempData["ErrorMessage"]);
+    }
+}
+
+@grid.Bind(Model.ShelterItems).GetHtml()

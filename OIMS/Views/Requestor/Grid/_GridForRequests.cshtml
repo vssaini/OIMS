@@ -1,0 +1,89 @@
+﻿@{
+    var grid = Html.DevExpress().GridView(
+        settings =>
+        {
+            settings.Name = "gvRequests";
+            settings.KeyFieldName = "RequestId";
+            settings.CallbackRouteValues = new { Controller = "Requestor", Action = "GridForRequests" };
+            settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Requestor", Action = "DeleteGridForRequests" };
+
+            // Styles
+            settings.Theme = Common.GlobalTheme;
+            settings.Width = Unit.Percentage(100);
+            settings.ControlStyle.Paddings.Padding = Unit.Pixel(0);
+            settings.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+            settings.ControlStyle.BorderBottom.BorderWidth = Unit.Pixel(1);
+            settings.Styles.CommandColumn.Spacing = Unit.Pixel(10);
+            settings.Styles.FocusedRow.CssClass = "focusRow";
+
+            // Show pager
+            settings.SettingsPager.Visible = true;
+            settings.SettingsPager.PageSize = 15;
+
+            // Show filter row for showing filtered data
+            settings.Settings.ShowFilterRow = false;
+
+            // Customize settings behaviour
+            settings.SettingsBehavior.AllowSort = true;
+            settings.SettingsBehavior.AllowFocusedRow = true;
+
+            // Custom text for empty data row
+            settings.SettingsText.EmptyDataRow = Requestor.Req_GridEmptyMsg;
+
+            // Edit and Delete settings
+            settings.SettingsBehavior.ConfirmDelete = true;
+
+            // Configure grid's columns
+            settings.Columns.Add("RequestId").Caption = Requestor.Req_GridId;
+            settings.Columns.Add("Job").Caption = Requestor.Req_GridJob;
+            settings.Columns.Add("Company").Caption = Requestor.Req_GridCompany;
+            settings.Columns.Add("Status").Caption = Requestor.Req_GridStatus;
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "CreatedOn";
+                column.Caption = Requestor.Req_GridDate;
+                column.PropertiesEdit.DisplayFormatString = Requestor.Req_Grid_DateFormat;
+            });
+
+            // Show command columns
+            settings.CommandColumn.Caption = Supervisor.GridCommand;
+            settings.CommandColumn.Width = Unit.Percentage(6);
+            settings.CommandColumn.VisibleIndex = settings.Columns.Count;
+            settings.CommandColumn.Visible = true;
+            settings.CommandColumn.ShowDeleteButton = true;
+
+            // Command buttons for Delete
+            settings.SettingsCommandButton.DeleteButton.ButtonType = GridViewCommandButtonType.Image;
+            settings.SettingsCommandButton.DeleteButton.Image.Url = "~/Content/Images/Common/GridDelete.png";
+
+            // ------ EVENTS ------
+
+            // Show details by focused row changed
+            settings.ClientSideEvents.RowClick = "OnGridRowClick";
+
+            // Remove by default selected row
+            settings.PreRender = (sender, e) =>
+            {
+                var g = (ASPxGridView)sender;
+                g.FocusedRowIndex = -1;
+            };
+
+            // Disable delete command if status approved, rejected, closed or manager approval pending
+            // So as to prevent user from deleting it
+            settings.CommandButtonInitialize = (sender, e) =>
+            {
+                if (e.VisibleIndex == -1) return;
+
+                var g = (ASPxGridView)sender;
+
+                var status = g.GetRowValues(e.VisibleIndex, "Status");
+
+                if (status.ToString().Equals("Manager approval pending") || status.ToString().Equals("Approved") || status.ToString().Equals("Rejected") || status.ToString().Equals("Closed"))
+                {
+                    e.Visible = e.Enabled = false;
+                }
+            };
+        });
+}
+
+@grid.Bind(Model).GetHtml()

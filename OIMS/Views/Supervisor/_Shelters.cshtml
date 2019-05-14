@@ -1,0 +1,92 @@
+﻿@using OIMS.Global
+@using OIMS.Repository.Supervisor
+@model OIMS.Models.Supervisor.ShelterItemsModel
+
+@{
+    var ajaxOptions = new AjaxOptions
+                          {
+                              UpdateTargetId = "productContent",
+                              OnBegin = "ProductBegin",
+                              OnSuccess = "ProductSuccess",
+                              OnFailure = "ProductFailure"
+                          };
+}
+
+@using (Ajax.BeginForm("ShelterPost", "Supervisor", null, ajaxOptions, new { id = "frmProduct" }))
+{
+    if (Model.Items.Any())
+    {
+    <button id="btnShowNewProductDiv" class="btn pull-right">
+        <i class="sm-icon-cube"></i>&nbsp;<span id="newProductSpan">@Supervisor.SLegdProducts</span>
+    </button>
+    }
+    
+    <div id="NewProductDiv" style="display: none;">
+        <h2 class="h2NewShelter">@Supervisor.Sh2</h2>
+
+        <div id="productContent">
+            @Html.Partial("_Result")
+        </div>
+
+        <!--For remembering-->
+        <input id = "website-image-path" type = "hidden" value = '@string.Format("{0}Content/Images/", Application.RootUrl)' />
+
+        <fieldset>
+            <legend>@Supervisor.SLegdProducts</legend>
+            <div class="control-group">
+                <table id="ProductsList">
+                    <tbody>
+                        <tr>
+                            <td class="padRight6">
+                                <label class="control-label">@Supervisor.SProductLabel</label>&nbsp;
+                                <input type="text" id="Product_0" name="Product[0]" required="required" autofocus="autofocus" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="padRight6">
+                                @Html.LabelFor(m => m.Item, new { @class = "control-label" })&nbsp;
+                                @Html.DropDownList("Item[0]", Model.Items, new { id = "Item_0", @class = "ddlWid" })&nbsp;&nbsp;<input type="number" id="Quantity_0" name="Quantity[0]" min="1" required="required" placeholder="Quantity" class="qtyWid" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="control-group">
+                <button id="btnNewProductItem" type="submit" class="btn" data-original-title="Associate more items">
+                    <i class="icon-plus"></i>&nbsp;@Supervisor.SBtnAdd
+                </button>
+            </div>
+        </fieldset>
+
+        <div class="control-group buttons">
+            <div class="controls">
+                <button type="submit" id="btnSaveItem" class="btn btn-primary">
+                    <i class="icon-ok icon-white"></i>
+                    @Supervisor.SBtnSave
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="gridContent">
+        <h2 class="h2Shelters">@Supervisor.TabShelters</h2>
+        @Html.Partial("Grid/_GridForShelters", ShelterRepository.Shelters)
+    </div>
+}
+
+@Html.DevExpress().LoadingPanel(
+        settings =>
+        {
+            settings.Name = "ProductLoader";
+            settings.Modal = true;
+            settings.ContainerElementID = "NewProductDiv";
+
+            // Layout
+            settings.Theme = "ClinicalStudyTheme";
+            settings.Text = Supervisor.SLoader;
+
+        }
+    ).GetHtml()
+
+@Scripts.Render("~/bundles/oims-s-shelters")
+

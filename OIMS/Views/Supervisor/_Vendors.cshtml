@@ -1,0 +1,89 @@
+﻿@using OIMS.Repository.Supervisor
+@model OIMS.Models.Supervisor.VendorsModel
+
+@{
+    var ajaxOptions = new AjaxOptions
+                          {
+                              UpdateTargetId = "vendorContent",
+                              OnBegin = "VendorBegin",
+                              OnSuccess = "VendorSuccess",
+                              OnFailure = "VendorFailure"
+                          };
+}
+
+@using (Ajax.BeginForm("VendorPost", "Supervisor", null, ajaxOptions, new { id = "frmVendor" }))
+{
+    <button id="btnShowNewVendorDiv" class="btn pull-right">
+        <i class="icon-user"></i>&nbsp;<span id="newVendorSpan">@Supervisor.VBtnNewVendor</span>
+    </button>
+    
+    <div id="NewVendorDiv" style="display: none;">
+        <h2 class="h2NewVendor">@Supervisor.Vh2</h2>
+
+        <div id="vendorContent">
+            @Html.Partial("_Result")
+        </div>
+
+        <fieldset>
+            <legend>@Supervisor.VLegd</legend>
+
+            <div class="control-group">
+                <label class="control-label required">@Supervisor.VGridName</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Name, new { required = "required", autofocus = "autofocus" })
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label required">@Supervisor.VGridAddress</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Address)
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label required">@Supervisor.VGridPhone</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Phone)
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label required">@Supervisor.VGridEmail</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Email, new { type = "email"})
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="control-group buttons">
+            <div class="controls">
+                <button type="submit" id="btnSave" class="btn btn-primary">
+                    <i class="icon-ok icon-white"></i>
+                    @Supervisor.VBtnSave
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="gridContent">
+        <h2 class="h2Vendors">@Supervisor.TabVendors</h2>
+            @Html.Partial("Grid/_GridForVendors", VendorRepository.Vendors)
+    </div>
+}
+
+@Html.DevExpress().LoadingPanel(
+        settings =>
+        {
+            settings.Name = "VendorLoader";
+            settings.Modal = true;
+            settings.ContainerElementID = "NewVendorDiv";
+
+            // Layout
+            settings.Theme = "ClinicalStudyTheme"; // Comment this to bring gray background
+            settings.Text = Supervisor.VLoader;
+
+        }
+    ).GetHtml()
+
+@Scripts.Render("~/bundles/oims-s-vendors")

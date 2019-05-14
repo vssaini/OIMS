@@ -1,0 +1,571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PageTitle" xml:space="preserve">
+    <value>OIMS - Supervisor zone</value>
+    <comment>Title for page</comment>
+  </data>
+  <data name="UErrorMsgConfirmPassword" xml:space="preserve">
+    <value>Confirm password is required</value>
+    <comment>Error message for confirm password</comment>
+  </data>
+  <data name="UErrorMsgEmail" xml:space="preserve">
+    <value>Email is required</value>
+    <comment>Error message for email </comment>
+  </data>
+  <data name="UErrorMsgFirstName" xml:space="preserve">
+    <value>First name is required</value>
+    <comment>Error message for first name</comment>
+  </data>
+  <data name="UErrorMsgLastName" xml:space="preserve">
+    <value>Last name is required</value>
+    <comment>Error message for last name</comment>
+  </data>
+  <data name="UErrorMsgPassword" xml:space="preserve">
+    <value>Password is required</value>
+    <comment>Error message for password</comment>
+  </data>
+  <data name="UMsgUserCreated" xml:space="preserve">
+    <value>New user '{0}' created successfully!</value>
+    <comment>Confirmation message for user created</comment>
+  </data>
+  <data name="ULoader" xml:space="preserve">
+    <value>Please wait! Saving user data...</value>
+    <comment>Loading message for showing during saving new user</comment>
+  </data>
+  <data name="Ih2" xml:space="preserve">
+    <value>New Item</value>
+    <comment>h2 for new item</comment>
+  </data>
+  <data name="TabItems" xml:space="preserve">
+    <value>Items</value>
+    <comment>Text for items tab and h2</comment>
+  </data>
+  <data name="TabShelters" xml:space="preserve">
+    <value>Shelters</value>
+    <comment>Text for products tab and h2</comment>
+  </data>
+  <data name="TabRequests" xml:space="preserve">
+    <value>Requests</value>
+    <comment>Text for requests tab and h2</comment>
+  </data>
+  <data name="TabUsers" xml:space="preserve">
+    <value>Users</value>
+    <comment>Text for users tab and h2</comment>
+  </data>
+  <data name="IBtnAdd" xml:space="preserve">
+    <value>Add</value>
+    <comment>Text for button add items</comment>
+  </data>
+  <data name="IBtnSave" xml:space="preserve">
+    <value>Save all items</value>
+    <comment>Text for button save items</comment>
+  </data>
+  <data name="ILegdItems" xml:space="preserve">
+    <value>Add new item(s)</value>
+    <comment>Text for legend</comment>
+  </data>
+  <data name="UBtnNewUser" xml:space="preserve">
+    <value>Add new user</value>
+    <comment>Text for button new user</comment>
+  </data>
+  <data name="UBtnSave" xml:space="preserve">
+    <value>Save new user</value>
+    <comment>Text for button save user</comment>
+  </data>
+  <data name="Uh2" xml:space="preserve">
+    <value>New User</value>
+    <comment>h2 for new user</comment>
+  </data>
+  <data name="ULegdLogin" xml:space="preserve">
+    <value>Login Details</value>
+    <comment>Text for legend</comment>
+  </data>
+  <data name="ULegdPersonal" xml:space="preserve">
+    <value>Personal Details</value>
+    <comment>Text for legend</comment>
+  </data>
+  <data name="ErrorMsgCharLimit" xml:space="preserve">
+    <value>Character should be less than 200</value>
+    <comment>Error message for character limit</comment>
+  </data>
+  <data name="UGridEmail" xml:space="preserve">
+    <value>Email</value>
+    <comment>Column caption of Users grid</comment>
+  </data>
+  <data name="UGridFirstName" xml:space="preserve">
+    <value>First Name</value>
+    <comment>Column caption of Users grid</comment>
+  </data>
+  <data name="UGridLastName" xml:space="preserve">
+    <value>Last Name</value>
+    <comment>Column caption of Users grid</comment>
+  </data>
+  <data name="UGridPassword" xml:space="preserve">
+    <value>Password</value>
+    <comment>Column caption of Users grid</comment>
+  </data>
+  <data name="GridCommand" xml:space="preserve">
+    <value> </value>
+    <comment>Column caption for command</comment>
+  </data>
+  <data name="IBtnNewItem" xml:space="preserve">
+    <value>Add new item(s)</value>
+    <comment>Text for button new item</comment>
+  </data>
+  <data name="IErrorMsgItemName" xml:space="preserve">
+    <value>Item name is required</value>
+    <comment>Error message for item name</comment>
+  </data>
+  <data name="IErrorMsgItemQty" xml:space="preserve">
+    <value>Quantity is required</value>
+    <comment>Error message for item quantity</comment>
+  </data>
+  <data name="IGridItemName" xml:space="preserve">
+    <value>Item Name</value>
+    <comment>Column caption of Items grid</comment>
+  </data>
+  <data name="IGridQuantity" xml:space="preserve">
+    <value>Units in stock</value>
+    <comment>Column caption of items grid</comment>
+  </data>
+  <data name="IGridEmptyMsg" xml:space="preserve">
+    <value>No items to display. Please add new items.</value>
+    <comment>Message to show when no data found</comment>
+  </data>
+  <data name="UGridEmptyMsg" xml:space="preserve">
+    <value>No users to display. Please add new users.</value>
+    <comment>Message to show when no data found</comment>
+  </data>
+  <data name="IErrorMsgItemExist" xml:space="preserve">
+    <value>One or more item(s) with same name already exists in database. Please modify items list. You can edit stock directly from items grid.</value>
+    <comment>Error message when item already exist in database</comment>
+  </data>
+  <data name="IMsgItemCreated" xml:space="preserve">
+    <value>All items saved successfully!</value>
+    <comment>Confirmation message for items created</comment>
+  </data>
+  <data name="IErrorMsgSameItem" xml:space="preserve">
+    <value>Items with same name cannot be added to database.</value>
+    <comment>Error message for if submitted items are same</comment>
+  </data>
+  <data name="ILoader" xml:space="preserve">
+    <value>Please wait! Saving items data...</value>
+    <comment>Loading message for showing during saving new item</comment>
+  </data>
+  <data name="Sh2" xml:space="preserve">
+    <value>New Shelter</value>
+    <comment>h2 for new product</comment>
+  </data>
+  <data name="SLoader" xml:space="preserve">
+    <value>Please wait! Saving shelter data...</value>
+    <comment>Loading message for showing during saving new shelter</comment>
+  </data>
+  <data name="SGridProdName" xml:space="preserve">
+    <value>Shelter Name</value>
+    <comment>Column caption of Products grid</comment>
+  </data>
+  <data name="SGridQuantity" xml:space="preserve">
+    <value>Possible Stock Count</value>
+    <comment>Column caption of Products grid</comment>
+  </data>
+  <data name="SGridItemEmptyMsg" xml:space="preserve">
+    <value>No items found associated with shelter.</value>
+    <comment>Message to show when no items found</comment>
+  </data>
+  <data name="SGridItemName" xml:space="preserve">
+    <value>Name of item</value>
+    <comment>Column caption of ProductItems grid</comment>
+  </data>
+  <data name="SGridItemsQtyPerShelter" xml:space="preserve">
+    <value>Quantity Per Shelter</value>
+    <comment>Column caption of ShelterItems grid</comment>
+  </data>
+  <data name="SErrorMsgForItemExist" xml:space="preserve">
+    <value>Selected item is already associated with current shelter.</value>
+    <comment>Error message for item is not unique while editing of items for product.</comment>
+  </data>
+  <data name="SItemLabel" xml:space="preserve">
+    <value>Select a item:</value>
+    <comment>Text for label for dropdownlist</comment>
+  </data>
+  <data name="SLegdProducts" xml:space="preserve">
+    <value>Add new shelter</value>
+    <comment>Text for legend</comment>
+  </data>
+  <data name="SBtnAdd" xml:space="preserve">
+    <value>Add</value>
+    <comment>Text for button for adding new items to product</comment>
+  </data>
+  <data name="SBtnSave" xml:space="preserve">
+    <value>Save new shelter</value>
+    <comment>Text for button for saving new product</comment>
+  </data>
+  <data name="SProductLabel" xml:space="preserve">
+    <value>Enter shelter name:</value>
+    <comment>Text for lable for new name of shelter</comment>
+  </data>
+  <data name="UGridRole" xml:space="preserve">
+    <value>User Role</value>
+    <comment>Column caption of Users grid</comment>
+  </data>
+  <data name="UErrorMsgRole" xml:space="preserve">
+    <value>Role is required</value>
+    <comment>Error message for user role</comment>
+  </data>
+  <data name="ULblConfirmPass" xml:space="preserve">
+    <value>Confirm Password</value>
+    <comment>Label for confirm password</comment>
+  </data>
+  <data name="SErrorMsgProductExist" xml:space="preserve">
+    <value>Shelter with same name already exists.</value>
+    <comment>Error message if product already exists in database.</comment>
+  </data>
+  <data name="SErrorMsgSameItem" xml:space="preserve">
+    <value>Selected items should be unique for current shelter.</value>
+    <comment>Error message when user select same items for current product.</comment>
+  </data>
+  <data name="SMsgProductCreated" xml:space="preserve">
+    <value>The new shelter '{0}' created successfully!</value>
+    <comment>Confirmation message for product created and saved.</comment>
+  </data>
+  <data name="SGridEmptyMsg" xml:space="preserve">
+    <value>No shelters to display. Please add new shelters.</value>
+    <comment>Mesage to show when no product data found</comment>
+  </data>
+  <data name="UErrorMsgEmailExist" xml:space="preserve">
+    <value>User with same email address already exists.</value>
+    <comment>Error message for if user with same email address already exist.</comment>
+  </data>
+  <data name="IErrorMsgItemExists" xml:space="preserve">
+    <value>Item with same name already exists.</value>
+    <comment>Error message while editing for same named items.</comment>
+  </data>
+  <data name="SGridItemNewLink" xml:space="preserve">
+    <value>New</value>
+    <comment>Text for new link in grid</comment>
+  </data>
+  <data name="RInfo" xml:space="preserve">
+    <value>Click respective request for allocating shelters or items and saving status.</value>
+    <comment>Text for notice</comment>
+  </data>
+  <data name="RGridCount" xml:space="preserve">
+    <value>Requested</value>
+    <comment>Column caption of Requested grid</comment>
+  </data>
+  <data name="RGridRecom" xml:space="preserve">
+    <value>Recommend</value>
+    <comment>Column caption of Requested grid</comment>
+  </data>
+  <data name="RGridStock" xml:space="preserve">
+    <value>In Stock</value>
+    <comment>Column caption of Requested grid</comment>
+  </data>
+  <data name="RBtnSave" xml:space="preserve">
+    <value>Save</value>
+    <comment>Text for save button for Request details</comment>
+  </data>
+  <data name="RItemGridLoad" xml:space="preserve">
+    <value>Please wait!Updating item stock...</value>
+    <comment>Text for loading for Item grid in Request details</comment>
+  </data>
+  <data name="RProdGridLoad" xml:space="preserve">
+    <value>Please wait! Updating shelter stock...</value>
+    <comment>Text for loading for Product grid in Request details</comment>
+  </data>
+  <data name="RSelectStatusOption" xml:space="preserve">
+    <value>-- Select Status --</value>
+    <comment>First option for Status select</comment>
+  </data>
+  <data name="RGridTooltip" xml:space="preserve">
+    <value>Click row under 'Recommend' for recommending '{0}'</value>
+    <comment>Tooltip for over row in grid in Request details</comment>
+  </data>
+  <data name="RGridPending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="RGridErrorMsgForExtraRecommend" xml:space="preserve">
+    <value>You cannot recommend greater than the requested value.</value>
+    <comment>Error message in detail grids</comment>
+  </data>
+  <data name="RGridErrorMsgForPartial" xml:space="preserve">
+    <value>Sum of Recommend &amp; Allocated should not exceed than Requested.</value>
+    <comment>Error message in detail grids </comment>
+  </data>
+  <data name="RGridAlloc" xml:space="preserve">
+    <value>Allocated</value>
+    <comment>Column caption of Requested grid</comment>
+  </data>
+  <data name="TabReports" xml:space="preserve">
+    <value>Reports</value>
+    <comment>Text for reports tab and h2</comment>
+  </data>
+  <data name="RLoader" xml:space="preserve">
+    <value>Please wait! Generating report...</value>
+    <comment>Loading message for showing when generating report</comment>
+  </data>
+  <data name="RBtnGo" xml:space="preserve">
+    <value>Go</value>
+    <comment>Text for Button</comment>
+  </data>
+  <data name="RSelectShelterOption" xml:space="preserve">
+    <value>-- Select Shelter --</value>
+    <comment>First option of Shelter select</comment>
+  </data>
+  <data name="TabVendors" xml:space="preserve">
+    <value>Vendors</value>
+    <comment>Text for vendords tab and h2</comment>
+  </data>
+  <data name="VBtnNewVendor" xml:space="preserve">
+    <value>Add new vendor</value>
+    <comment>Text for button new vendor</comment>
+  </data>
+  <data name="VGridName" xml:space="preserve">
+    <value>Name</value>
+    <comment>Column caption of Vendors grid</comment>
+  </data>
+  <data name="Vh2" xml:space="preserve">
+    <value>New Vendor</value>
+    <comment>h2 for new vendor</comment>
+  </data>
+  <data name="VLegd" xml:space="preserve">
+    <value>Vendor Details</value>
+    <comment>Text for legend</comment>
+  </data>
+  <data name="VBtnSave" xml:space="preserve">
+    <value>Save new vendor</value>
+    <comment>Text for button save vendor</comment>
+  </data>
+  <data name="VErrorMsgName" xml:space="preserve">
+    <value>Name is required</value>
+    <comment>Error message for vendor name</comment>
+  </data>
+  <data name="VErrorMsgVendorExist" xml:space="preserve">
+    <value>Vendor with same name already exists.</value>
+    <comment>Error message for if user wiht same name already exist.</comment>
+  </data>
+  <data name="VGridAddress" xml:space="preserve">
+    <value>Address</value>
+    <comment>Column caption of Vendors grid</comment>
+  </data>
+  <data name="VGridEmail" xml:space="preserve">
+    <value>Email</value>
+    <comment>Column caption of Vendors grid</comment>
+  </data>
+  <data name="VGridEmptyMsg" xml:space="preserve">
+    <value>No vendors to display. Please add new vendors.</value>
+    <comment>Message to show when no data found</comment>
+  </data>
+  <data name="VGridPhone" xml:space="preserve">
+    <value>Phone</value>
+    <comment>Column caption of Vendors grid</comment>
+  </data>
+  <data name="VLoader" xml:space="preserve">
+    <value>Please wait! Saving vendor data...</value>
+    <comment>Loading message for showing during saving new vendor</comment>
+  </data>
+  <data name="VMsgVendorCreated" xml:space="preserve">
+    <value>New vendor '{0}' created successfully!</value>
+    <comment>Confirmation message for vendor created</comment>
+  </data>
+  <data name="IL_h2" xml:space="preserve">
+    <value>New Log</value>
+    <comment>h2 for new item log</comment>
+  </data>
+  <data name="IL_Logs" xml:space="preserve">
+    <value>Items Log</value>
+    <comment>h2 for items log</comment>
+  </data>
+  <data name="IL_CommonVendor" xml:space="preserve">
+    <value>Common vendor</value>
+    <comment>Text for label for new log(s)</comment>
+  </data>
+  <data name="IL_LegdItemsLog" xml:space="preserve">
+    <value>Add new item(s) log</value>
+    <comment>Text for legend</comment>
+  </data>
+  <data name="TabItemsLog" xml:space="preserve">
+    <value>Items Log</value>
+    <comment>Text for items log tab and h2</comment>
+  </data>
+  <data name="IL_BtnSave" xml:space="preserve">
+    <value>Save all logs</value>
+    <comment>Text for button save logs</comment>
+  </data>
+  <data name="IL_GridEmptyMsg" xml:space="preserve">
+    <value>No logs to display. Please add new items log.</value>
+    <comment>Message to show when no data found</comment>
+  </data>
+  <data name="IL_GridLogDate" xml:space="preserve">
+    <value>Log Date</value>
+    <comment>Column caption of ItemsLog grid</comment>
+  </data>
+  <data name="IL_GridVendorName" xml:space="preserve">
+    <value>Vendor Name</value>
+    <comment>Column caption of ItemsLog grid</comment>
+  </data>
+  <data name="IL_MsgLogCreated" xml:space="preserve">
+    <value>All items log saved successfully!</value>
+    <comment>Confirmation message for items log created</comment>
+  </data>
+  <data name="IL_GridDateFormat" xml:space="preserve">
+    <value>D</value>
+    <comment>The date format string for Log date</comment>
+  </data>
+  <data name="IL_GridQuantity" xml:space="preserve">
+    <value>Quantity</value>
+    <comment>Column caption of Items log grid</comment>
+  </data>
+  <data name="IErrorMsgMarking" xml:space="preserve">
+    <value>Marking is required</value>
+    <comment>Error message for item marking</comment>
+  </data>
+  <data name="IErrorMsgSize" xml:space="preserve">
+    <value>Size of item is required</value>
+    <comment>Error message for item size</comment>
+  </data>
+  <data name="IGridMarking" xml:space="preserve">
+    <value>Marking</value>
+    <comment>Column caption of Items grid</comment>
+  </data>
+  <data name="IGridSize" xml:space="preserve">
+    <value>Size</value>
+    <comment>Column caption of Items grid</comment>
+  </data>
+  <data name="IGridUpdatedOn" xml:space="preserve">
+    <value>Updated On</value>
+    <comment>Column caption of Items grid</comment>
+  </data>
+  <data name="IGridVendor" xml:space="preserve">
+    <value>Name of Vendor</value>
+    <comment>Column caption of Items grid</comment>
+  </data>
+  <data name="IErrorMsgItemBeingUse" xml:space="preserve">
+    <value>Item is being used in shelter. First delete shelter using item '{0}'</value>
+    <comment>Error message for items is being used</comment>
+  </data>
+  <data name="SGridItemStock" xml:space="preserve">
+    <value>In Stock</value>
+    <comment>Column caption of ShelterItems grid</comment>
+  </data>
+  <data name="SGridVendor" xml:space="preserve">
+    <value>Vendor</value>
+    <comment>Column caption of ShelterItems grid</comment>
+  </data>
+</root>

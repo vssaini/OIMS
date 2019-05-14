@@ -1,0 +1,72 @@
+﻿@model OIMS.Models.Requestor.CartModel
+
+<h2 class="h2NewRequest">@Requestor.Nr_Header</h2>
+
+@using (Html.BeginForm("NewRequest", "Requestor", FormMethod.Get, new { name = "form-NewRequest", id = "form-NewRequest" }))
+{
+    <div class="padTop10">
+        <button id="btnShowPopup" class="btn">@Requestor.Nr_Legend</button>
+    </div>
+    
+    <div id="prodItemBox" class="divColWid padTop25">
+
+        <div id="divProduct">
+            <div class="item-box itemBoxWidth">
+                <div class="headBar">
+                    <span>@Requestor.Nr_Shelters</span>
+                </div>
+
+                <div class="data">
+                    <div class="control-group">
+                        <div><span class="valign padRight10">@Requestor.Nr_SelectShelter</span> @Html.DropDownList("Product", Model.SModel.Shelters, new { @class = "ddlWid" })</div>
+                        <div class="padTop10">
+                            <span class="padRight10">Enter quantity:</span>
+                            <input type="number" id="ProdQuantity" name="ProdQuantity" min="1" required="required" class="qtyWid" />
+                        </div>
+                        <div id="divShelterItems" class="padTop10">
+                            @{
+    // Pass dummy data to avoid exception
+    Html.RenderAction("GridForShelterItems", new { shelterNqty = "0,0" });
+                            }
+                        </div>
+
+                        <div id="divButton" class="center">
+                            <button data-href="@Url.Action("AddShelterToCart", "Requestor")" class="btn btn-warning add-to-cart ajax-cart-link" rel="tooltip" data-type="cart" data-sub-type="product" data-action="add" data-original-title="Add to cart" >
+                                <i class="icon-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="placeHolder"></div>
+
+    @Html.DevExpress().LoadingPanel(
+        settings =>
+        {
+            settings.Name = "RequestLoader";
+            settings.Modal = true;
+            settings.ContainerElementID = "placeHolder";
+
+            // Layout
+            settings.Theme = Common.GlobalTheme;
+            settings.Text = Requestor.Nr_Loader;
+
+        }
+    ).GetHtml()
+
+    <!--The occurence of elements below should be in same order-->
+    @Scripts.Render("~/bundles/oims-r-new")
+
+    <script type="text/javascript">
+        function PopupEndCallback()
+        {
+            SetBtnClicks();
+            SetRadioClicks();
+        }
+    </script>
+
+    @Html.Partial("_JobPopup")
+}

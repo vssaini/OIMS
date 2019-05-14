@@ -1,0 +1,1209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DomainModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="2.0.0.0" name="OimsDbContext" namespace="OimsDataModel" showPropertiesCompartment="true" xmlns="http://www.telerik.com/ORM">
+  <orm:orm name="OimsDbContext" backend="mysql" xmlns:orm="http://tempuri.org/ORM">
+    <orm:namespace name="OimsDataModel" default="true">
+      <orm:class name="Vendor" uniqueId="f3f2712a-a25a-4800-a5a7-1ef27f2e5e95">
+        <orm:table name="vendors" />
+        <orm:identity>
+          <orm:single-field field-name="_name" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_name" property="Name" behavior="readwrite" uniqueId="6ecc59ae-2002-4bf6-967a-a77ca2e6c89c" type="System.String">
+          <orm:column name="Name" sql-type="nvarchar" nullable="false" length="100" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_address" property="Address" behavior="readwrite" uniqueId="a3d24349-1836-40b9-be17-237542b00969" type="System.String">
+          <orm:column name="Address" sql-type="nvarchar" nullable="true" length="100" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_phone" property="Phone" behavior="readwrite" uniqueId="ab9209ce-82b2-47f5-97bd-95c2f99fdb1d" type="System.String">
+          <orm:column name="Phone" sql-type="nvarchar" nullable="true" length="10" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_email" property="Email" behavior="readwrite" uniqueId="cd08b7f2-3659-4a45-9656-7023016d135c" type="System.String">
+          <orm:column name="Email" sql-type="nvarchar" nullable="true" length="50" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_itemslogs" property="Itemslogs" behavior="readwrite" uniqueId="3b80c1bd-216a-45d3-a760-0a501a8cc93a" type="OimsDataModel.Itemslog">
+          <orm:collection element-class="OimsDataModel.Itemslog" inverse-field="_vendor" managed="true" order-by="" uniqueId="a6d646e0-7386-4f51-8327-f33840db5b54" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="User" uniqueId="3cdccec7-7781-4d8f-8c8b-7bbe1e0d5e60">
+        <orm:table name="users" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_u_Id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_u_Id" property="U_Id" behavior="readwrite" uniqueId="e52e52a5-59b1-40f0-ac97-939e1afed02a" type="System.Int32">
+          <orm:column name="U_Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_r_Id" property="R_Id" behavior="readwrite" uniqueId="844964a1-92b4-455d-ad67-3590d7609c8a" type="System.Int32">
+          <orm:column name="R_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_u_FirstName" property="U_FirstName" behavior="readwrite" uniqueId="65edfd33-7f1b-4a5d-9688-7aa6016f7829" type="System.String">
+          <orm:column name="U_FirstName" sql-type="nvarchar" nullable="false" length="200" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_u_LastName" property="U_LastName" behavior="readwrite" uniqueId="a955ec44-13b4-4cf3-8875-a0a685bd5986" type="System.String">
+          <orm:column name="U_LastName" sql-type="nvarchar" nullable="true" length="200" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_u_Email" property="U_Email" behavior="readwrite" uniqueId="ed55b2f5-3a2f-4a01-8b95-74ee19eb9636" type="System.String">
+          <orm:column name="U_Email" sql-type="nvarchar" nullable="false" length="200" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_u_Password" property="U_Password" behavior="readwrite" uniqueId="a8ed1900-f6fa-43dc-8244-0ef0e9ee9521" type="System.String">
+          <orm:column name="U_Password" sql-type="nvarchar" nullable="false" length="200" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_role" property="Role" behavior="readwrite" uniqueId="ed591368-7583-4a5f-9363-91f3605d8a17" type="OimsDataModel.Role">
+          <orm:reference uniqueId="8086dcb1-3608-43f3-9cf7-e4f0c73a456a">
+            <orm:sharedfield name="_r_Id" target-class="OimsDataModel.Role" target-field="_r_Id" />
+            <orm:constraint name="FK_Role" destination-table="role" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_requests" property="Requests" behavior="readwrite" uniqueId="438644ea-b922-4f53-95a4-f9ab9579e05d" type="OimsDataModel.Request">
+          <orm:collection element-class="OimsDataModel.Request" inverse-field="_user" managed="true" order-by="" uniqueId="49a6c6c6-eb06-4277-bca8-10bde8cd409d" />
+        </orm:field>
+        <orm:field name="_cartstuffs" property="Cartstuffs" behavior="readwrite" uniqueId="1c548ba4-1d25-4fd1-97e8-e3546cfd9931" type="OimsDataModel.Cartstuff">
+          <orm:collection element-class="OimsDataModel.Cartstuff" inverse-field="_user" managed="true" order-by="" uniqueId="d3d66ef3-d918-402d-a642-419ff1d22dbb" />
+        </orm:field>
+        <orm:field name="_allocateds" property="Allocateds" behavior="readwrite" uniqueId="102d43c5-dcbf-4536-9442-ac9f340a670d" type="OimsDataModel.Allocated">
+          <orm:collection element-class="OimsDataModel.Allocated" inverse-field="_user" managed="true" order-by="" uniqueId="e449653b-9929-4bb3-9b23-c1ff0e373f91" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Sheltersrequest" uniqueId="326cf110-ad60-4b74-8e78-3d04d9811415">
+        <orm:table name="sheltersrequest" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_oP_Id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_oP_Id" property="OP_Id" behavior="readwrite" uniqueId="8b1ed6bb-4ef3-4940-89dc-f4e1a28950bb" type="System.Int32">
+          <orm:column name="OP_Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_o_Id" property="O_Id" behavior="readwrite" uniqueId="6aa1b6b6-d0fc-434a-97b9-2df46b5c3d6e" type="System.Int32">
+          <orm:column name="O_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_p_Id" property="P_Id" behavior="readwrite" uniqueId="cc0ff4c7-8419-4783-840d-2cf02f42eccd" type="System.Int32">
+          <orm:column name="P_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_oP_Quantity" property="OP_Quantity" behavior="readwrite" uniqueId="bcdcfde7-ff3d-41cf-9701-f5213f9286e8" type="System.Single">
+          <orm:column name="OP_Quantity" sql-type="float" nullable="false" length="0" scale="0" ado-type="Real" />
+        </orm:field>
+        <orm:field name="_oP_ProdRecom" property="OP_ProdRecom" behavior="readwrite" uniqueId="8431a79e-3aaf-4630-8246-db1ad4aea830" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="OP_ProdRecom" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_oP_Pending" property="OP_Pending" behavior="readwrite" uniqueId="64621151-6e80-462a-ac26-61fee0d82418" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="OP_Pending" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_oP_ProdAlloc" property="OP_ProdAlloc" behavior="readwrite" uniqueId="ba444b46-22f8-4f36-ae8d-088efca90b51" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="OP_ProdAlloc" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_oP_CreatedBy" property="OP_CreatedBy" behavior="readwrite" uniqueId="f32b24d7-8bd3-4617-9002-bbf3446ceded" type="System.Int32">
+          <orm:column name="OP_CreatedBy" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_oP_CreatedDate" property="OP_CreatedDate" behavior="readwrite" uniqueId="14c9735c-bc68-4821-8dab-4ca0f7492abe" type="System.DateTime">
+          <orm:column name="OP_CreatedDate" sql-type="datetime" nullable="false" length="0" scale="0" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_oP_UpdatedBy" property="OP_UpdatedBy" behavior="readwrite" uniqueId="8b7d5344-a22e-48c8-8af4-6c1051e776ef" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="OP_UpdatedBy" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_oP_UpdatedDate" property="OP_UpdatedDate" behavior="readwrite" uniqueId="adb7b5cc-a573-46ad-a4fc-215564bdebf1" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="OP_UpdatedDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_shelter" property="Shelter" behavior="readwrite" uniqueId="3cd98b56-4024-4326-9d62-feed9f136beb" type="OimsDataModel.Shelter">
+          <orm:reference uniqueId="0318cca7-5e2d-4565-8ad3-7503b55e5755">
+            <orm:sharedfield name="_p_Id" target-class="OimsDataModel.Shelter" target-field="_p_Id" />
+            <orm:constraint name="FK_Order_ProductId" destination-table="shelters" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_request" property="Request" behavior="readwrite" uniqueId="e0571350-4526-4833-beb6-1e3f7f964ca9" type="OimsDataModel.Request">
+          <orm:reference uniqueId="e90247ab-a915-4a89-a37c-274a8c8afdd6">
+            <orm:sharedfield name="_o_Id" target-class="OimsDataModel.Request" target-field="_o_Id" />
+            <orm:constraint name="FK__orders" destination-table="requests" />
+          </orm:reference>
+        </orm:field>
+      </orm:class>
+      <orm:class name="Shelter" uniqueId="a1423912-a5d7-4f48-9c13-5475eb73396d">
+        <orm:table name="shelters" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_p_Id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_p_Id" property="P_Id" behavior="readwrite" uniqueId="a3a64efb-f04b-47b0-976f-538df5ab5b14" type="System.Int32">
+          <orm:column name="P_Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_p_Name" property="P_Name" behavior="readwrite" uniqueId="e47e2460-6a40-4fc9-88c5-fd0ccec65fe8" type="System.String">
+          <orm:column name="P_Name" sql-type="nvarchar" nullable="false" length="200" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_p_Dummy" property="P_Dummy" behavior="readwrite" uniqueId="981ae5ba-f870-4d13-b078-036303846a0a" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="P_Dummy" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_sheltersrequests" property="Sheltersrequests" behavior="readwrite" uniqueId="395e40d6-bc04-4243-9ee7-8c8a6a90a85f" type="OimsDataModel.Sheltersrequest">
+          <orm:collection element-class="OimsDataModel.Sheltersrequest" inverse-field="_shelter" managed="true" order-by="" uniqueId="0318cca7-5e2d-4565-8ad3-7503b55e5755" />
+        </orm:field>
+        <orm:field name="_shelterdescriptions" property="Shelterdescriptions" behavior="readwrite" uniqueId="b54bd060-c008-4a46-ae3d-e701db2d80f8" type="OimsDataModel.Shelterdescription">
+          <orm:collection element-class="OimsDataModel.Shelterdescription" inverse-field="_shelter" managed="true" order-by="" uniqueId="93717831-b42e-40a5-8ce2-f651fb6a6feb" />
+        </orm:field>
+        <orm:field name="_cartstuffs" property="Cartstuffs" behavior="readwrite" uniqueId="e071f35d-2b0c-45c0-97d7-c5736197bd0f" type="OimsDataModel.Cartstuff">
+          <orm:collection element-class="OimsDataModel.Cartstuff" inverse-field="_shelter" managed="true" order-by="" uniqueId="571f9f13-7b2e-47db-90f5-e5133ab8ba41" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Shelterdescription" uniqueId="b989d926-060a-49ba-b228-73cfddf2a127">
+        <orm:table name="shelterdescription" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_pD_Id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_pD_Id" property="PD_Id" behavior="readwrite" uniqueId="8074e7cd-6815-484e-a91d-feff83377563" type="System.Int32">
+          <orm:column name="PD_Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_p_Id" property="P_Id" behavior="readwrite" uniqueId="7121fd24-da2e-42f3-a577-8e8b5832777f" type="System.Int32">
+          <orm:column name="P_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_i_Id" property="I_Id" behavior="readwrite" uniqueId="68fb3273-8ddf-4b27-89f6-98bbf37be16e" type="System.Int32">
+          <orm:column name="I_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_i_Qty" property="I_Qty" behavior="readwrite" uniqueId="c7e8ac3b-0be5-4745-8b80-b10d563786b4" type="System.Int32">
+          <orm:column name="I_Qty" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_item" property="Item" behavior="readwrite" uniqueId="0e466a6e-0499-4a24-87ca-2b8144e60c4a" type="OimsDataModel.Item">
+          <orm:reference uniqueId="800d89f4-1966-4e1e-a1de-a38f2851737a">
+            <orm:sharedfield name="_i_Id" target-class="OimsDataModel.Item" target-field="_i_Id" />
+            <orm:constraint name="FK_items" destination-table="items" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_shelter" property="Shelter" behavior="readwrite" uniqueId="a526e0e6-bf1a-47e2-b601-510fda69839d" type="OimsDataModel.Shelter">
+          <orm:reference uniqueId="93717831-b42e-40a5-8ce2-f651fb6a6feb">
+            <orm:sharedfield name="_p_Id" target-class="OimsDataModel.Shelter" target-field="_p_Id" />
+            <orm:constraint name="FK__products" destination-table="shelters" />
+          </orm:reference>
+        </orm:field>
+      </orm:class>
+      <orm:class name="Role" uniqueId="d8b1ce91-71f3-4c32-ade1-04fbd6ffbf32">
+        <orm:table name="role" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_r_Id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_r_Id" property="R_Id" behavior="readwrite" uniqueId="7fcfe8ec-ee0c-45ee-b817-8ff4492d13bf" type="System.Int32">
+          <orm:column name="R_Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_r_Name" property="R_Name" behavior="readwrite" uniqueId="043cfa8c-26fd-4bda-8104-42881583395d" type="System.String">
+          <orm:column name="R_Name" sql-type="nvarchar" nullable="false" length="200" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_users" property="Users" behavior="readwrite" uniqueId="8b364133-4d6e-409c-8567-e8899f2c5166" type="OimsDataModel.User">
+          <orm:collection element-class="OimsDataModel.User" inverse-field="_role" managed="true" order-by="" uniqueId="8086dcb1-3608-43f3-9cf7-e4f0c73a456a" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Requeststatus" uniqueId="88359aae-9613-481a-9734-ea856281c223">
+        <orm:table name="requeststatus" />
+        <orm:identity>
+          <orm:single-field field-name="_s_Id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_s_Id" property="S_Id" behavior="readwrite" uniqueId="15cd995a-9971-4310-9c69-04f94fcea27b" type="System.Int32">
+          <orm:column name="S_Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_s_Name" property="S_Name" behavior="readwrite" uniqueId="e5f06693-a83a-4713-b661-8da2f3c153ec" type="System.String">
+          <orm:column name="S_Name" sql-type="tinytext" nullable="false" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        </orm:field>
+        <orm:field name="_forRole" property="ForRole" behavior="readwrite" uniqueId="07aba6bc-b217-4cd4-b9ad-c87e64b4cae4" type="System.Int32">
+          <orm:column name="ForRole" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_requests" property="Requests" behavior="readwrite" uniqueId="5852fbb0-7852-4cf3-8592-d2e6021924ba" type="OimsDataModel.Request">
+          <orm:collection element-class="OimsDataModel.Request" inverse-field="_requeststatus" managed="true" order-by="" uniqueId="d2750ce3-55b4-4a7b-a8f4-e002db4ac797" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Request" uniqueId="941f52b7-4b03-4dd8-a00e-ec66d980a9e5">
+        <orm:table name="requests" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_o_Id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_o_Id" property="O_Id" behavior="readwrite" uniqueId="739c710d-94f2-4b25-b0d5-528a173e973c" type="System.Int32">
+          <orm:column name="O_Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_o_CreatedBy" property="O_CreatedBy" behavior="readwrite" uniqueId="19d7b0cb-d86d-453a-bf8f-529609c6244f" type="System.Int32">
+          <orm:column name="O_CreatedBy" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_o_CreatedDate" property="O_CreatedDate" behavior="readwrite" uniqueId="68863d9e-c8e9-4d79-9c02-82d852c12055" type="System.DateTime">
+          <orm:column name="O_CreatedDate" sql-type="datetime" nullable="false" length="0" scale="0" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_o_UpdatedBy" property="O_UpdatedBy" behavior="readwrite" uniqueId="431c45ab-1815-4b38-bcd4-10ef2eb6956d" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="O_UpdatedBy" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_o_UpdatedDate" property="O_UpdatedDate" behavior="readwrite" uniqueId="b23587ef-f02b-41a1-a965-406275649b30" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="O_UpdatedDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_o_Job" property="O_Job" behavior="readwrite" uniqueId="0fd430a3-6481-413a-b8b7-aa6f1b6d715a" type="System.String">
+          <orm:column name="O_Job" sql-type="nvarchar" nullable="true" length="100" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_o_Status" property="O_Status" behavior="readwrite" uniqueId="4a8fb575-ba3e-49fc-8d13-7b76b68bdf65" type="System.Int32">
+          <orm:column name="O_Status" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_o_Company" property="O_Company" behavior="readwrite" uniqueId="cc16b3f2-f786-41d3-986a-61b2cb6e283e" type="System.String">
+          <orm:column name="O_Company" sql-type="nvarchar" nullable="true" length="100" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_company" property="Company" behavior="readwrite" uniqueId="d715c1c6-f3dd-4026-95bf-01a86422679a" type="OimsDataModel.Company">
+          <orm:reference uniqueId="a86453f7-e006-42f4-a1cc-38f8b61cbd0e">
+            <orm:sharedfield name="_o_Company" target-class="OimsDataModel.Company" target-field="_companyName" />
+            <orm:constraint name="FK_Company" destination-table="companies" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_requeststatus" property="Requeststatus" behavior="readwrite" uniqueId="c22bf023-b164-4bb6-bcf1-8333fd505d39" type="OimsDataModel.Requeststatus">
+          <orm:reference uniqueId="d2750ce3-55b4-4a7b-a8f4-e002db4ac797">
+            <orm:sharedfield name="_o_Status" target-class="OimsDataModel.Requeststatus" target-field="_s_Id" />
+            <orm:constraint name="FK_OrderStatus" destination-table="requeststatus" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_user" property="User" behavior="readwrite" uniqueId="5c47bf58-ec04-45dc-bc03-4f02b28a3514" type="OimsDataModel.User">
+          <orm:reference uniqueId="49a6c6c6-eb06-4277-bca8-10bde8cd409d">
+            <orm:sharedfield name="_o_CreatedBy" target-class="OimsDataModel.User" target-field="_u_Id" />
+            <orm:constraint name="FK_User" destination-table="users" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_sheltersrequests" property="Sheltersrequests" behavior="readwrite" uniqueId="201dbbae-66a8-4562-8b73-407d4463ac86" type="OimsDataModel.Sheltersrequest">
+          <orm:collection element-class="OimsDataModel.Sheltersrequest" inverse-field="_request" managed="true" order-by="" uniqueId="e90247ab-a915-4a89-a37c-274a8c8afdd6" />
+        </orm:field>
+        <orm:field name="_itemsrequests" property="Itemsrequests" behavior="readwrite" uniqueId="38da58dc-684a-4091-9668-b4feaf91729d" type="OimsDataModel.Itemsrequest">
+          <orm:collection element-class="OimsDataModel.Itemsrequest" inverse-field="_request" managed="true" order-by="" uniqueId="ce850d84-926d-495e-bc91-50b8baae0863" />
+        </orm:field>
+        <orm:field name="_allocateds" property="Allocateds" behavior="readwrite" uniqueId="7a9ecbba-20d3-41a5-ac59-0727c498051d" type="OimsDataModel.Allocated">
+          <orm:collection element-class="OimsDataModel.Allocated" inverse-field="_request" managed="true" order-by="" uniqueId="c4708da1-7da0-4d08-8239-9a53a17ec514" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Itemsrequest" uniqueId="d823cb3c-6733-40b4-9772-fc1ec1165d64">
+        <orm:table name="itemsrequest" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_oI_Id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_oI_Id" property="OI_Id" behavior="readwrite" uniqueId="b86dce66-8ff7-4a13-93ae-dfbd5fe7a917" type="System.Int32">
+          <orm:column name="OI_Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_o_Id" property="O_Id" behavior="readwrite" uniqueId="8671ab2f-b0da-40a3-a59d-3929a9b288dc" type="System.Int32">
+          <orm:column name="O_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_i_Id" property="I_Id" behavior="readwrite" uniqueId="8ba2a561-7ac7-4467-8c90-0f1fbbe4ebbb" type="System.Int32">
+          <orm:column name="I_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_oI_Quantity" property="OI_Quantity" behavior="readwrite" uniqueId="ef93a23d-5ffd-4467-95fa-43e542d48622" type="System.Single">
+          <orm:column name="OI_Quantity" sql-type="float" nullable="false" length="0" scale="0" ado-type="Real" />
+        </orm:field>
+        <orm:field name="_oI_ItemRecom" property="OI_ItemRecom" behavior="readwrite" uniqueId="2f56628b-bb0a-4c44-bd84-c089dc97f079" type="System.Nullable`1[[System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="OI_ItemRecom" sql-type="float" nullable="true" length="0" scale="0" ado-type="Real" />
+        </orm:field>
+        <orm:field name="_oI_ItemAlloc" property="OI_ItemAlloc" behavior="readwrite" uniqueId="2332d31f-8023-4dc2-ae1b-fbf2a558ea50" type="System.Nullable`1[[System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="OI_ItemAlloc" sql-type="float" nullable="true" length="0" scale="0" ado-type="Real" />
+        </orm:field>
+        <orm:field name="_oI_Pending" property="OI_Pending" behavior="readwrite" uniqueId="69f0d9c7-ba0f-428e-8713-3d3209e9bd5e" type="System.Nullable`1[[System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="OI_Pending" sql-type="float" nullable="true" length="0" scale="0" ado-type="Real" />
+        </orm:field>
+        <orm:field name="_oI_CreatedBy" property="OI_CreatedBy" behavior="readwrite" uniqueId="68fa0e8a-c11a-479b-9666-46db9e0832a0" type="System.Int32">
+          <orm:column name="OI_CreatedBy" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_oI_CreatedDate" property="OI_CreatedDate" behavior="readwrite" uniqueId="89ca7437-e999-4e89-8eeb-81f41b4c6884" type="System.DateTime">
+          <orm:column name="OI_CreatedDate" sql-type="datetime" nullable="false" length="0" scale="0" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_oI_UpdatedBy" property="OI_UpdatedBy" behavior="readwrite" uniqueId="e3e43e3a-8aaa-4e3d-9ff9-c01c17f3259a" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="OI_UpdatedBy" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_oI_UpdatedDate" property="OI_UpdatedDate" behavior="readwrite" uniqueId="795bc5cf-a0e8-4a0f-8d00-584c94fb7363" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="OI_UpdatedDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_request" property="Request" behavior="readwrite" uniqueId="66837cd7-5a80-4280-80d6-af0accc49882" type="OimsDataModel.Request">
+          <orm:reference uniqueId="ce850d84-926d-495e-bc91-50b8baae0863">
+            <orm:sharedfield name="_o_Id" target-class="OimsDataModel.Request" target-field="_o_Id" />
+            <orm:constraint name="FK_OrderId" destination-table="requests" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_item" property="Item" behavior="readwrite" uniqueId="ef95d9ad-97f7-4d07-a2d2-cb593d0e9a72" type="OimsDataModel.Item">
+          <orm:reference uniqueId="bb22accc-99f7-486b-87bb-39f13e7d1867">
+            <orm:sharedfield name="_i_Id" target-class="OimsDataModel.Item" target-field="_i_Id" />
+            <orm:constraint name="FK_Order_ItemId" destination-table="items" />
+          </orm:reference>
+        </orm:field>
+      </orm:class>
+      <orm:class name="Itemslog" uniqueId="24896162-4e42-4ed0-b529-6971bc047d8a">
+        <orm:table name="itemslog" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="030e1ac5-d6f6-454c-b366-a724187102b3" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_itemId" property="ItemId" behavior="readwrite" uniqueId="494efde9-17d6-416c-95e9-4331a1edae21" type="System.Int32">
+          <orm:column name="ItemId" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_itemQuantity" property="ItemQuantity" behavior="readwrite" uniqueId="09b65462-6968-41a2-9e5f-ab8ec83ebb88" type="System.Single">
+          <orm:column name="ItemQuantity" sql-type="float" nullable="false" length="0" scale="0" ado-type="Real" />
+        </orm:field>
+        <orm:field name="_vendorName" property="VendorName" behavior="readwrite" uniqueId="212e3ecb-7cc8-4ee5-ab13-f7cf06b784e4" type="System.String">
+          <orm:column name="VendorName" sql-type="nvarchar" nullable="false" length="100" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_entryDate" property="EntryDate" behavior="readwrite" uniqueId="0ffd2cd8-1b5d-42b3-875b-bee9def6a922" type="System.DateTime">
+          <orm:column name="EntryDate" sql-type="datetime" nullable="false" length="0" scale="0" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_item" property="Item" behavior="readwrite" uniqueId="068a7bcc-1f5f-4da1-908b-9b40ded077a8" type="OimsDataModel.Item">
+          <orm:reference uniqueId="22011194-63d9-4c53-a99e-3aa6e5456c6c">
+            <orm:sharedfield name="_itemId" target-class="OimsDataModel.Item" target-field="_i_Id" />
+            <orm:constraint name="FKLog_ItemId" destination-table="items" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_vendor" property="Vendor" behavior="readwrite" uniqueId="281796a5-ef8b-4209-9606-db065af3b4ce" type="OimsDataModel.Vendor">
+          <orm:reference uniqueId="a6d646e0-7386-4f51-8327-f33840db5b54">
+            <orm:sharedfield name="_vendorName" target-class="OimsDataModel.Vendor" target-field="_name" />
+            <orm:constraint name="FKLog_VName" destination-table="vendors" />
+          </orm:reference>
+        </orm:field>
+      </orm:class>
+      <orm:class name="Item" uniqueId="9463040a-6b73-419a-be2c-1aa6c865059d">
+        <orm:table name="items" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_i_Id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_i_Id" property="I_Id" behavior="readwrite" uniqueId="49bf6dd8-b2b7-4562-b509-1843a26afbfd" type="System.Int32">
+          <orm:column name="I_Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_i_Name" property="I_Name" behavior="readwrite" uniqueId="caa33f28-5823-49fd-b45b-1b53338c5829" type="System.String">
+          <orm:column name="I_Name" sql-type="nvarchar" nullable="false" length="200" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_i_Quantity" property="I_Quantity" behavior="readwrite" uniqueId="cc3dcce0-c191-4d85-8212-2956c5aaf078" type="System.Single">
+          <orm:column name="I_Quantity" sql-type="float" nullable="false" length="0" scale="0" ado-type="Real" />
+        </orm:field>
+        <orm:field name="_size" property="Size" behavior="readwrite" uniqueId="ae761f26-d45b-4026-a38b-78244ae1ff32" type="System.String">
+          <orm:column name="Size" sql-type="nvarchar" nullable="false" length="50" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_marking" property="Marking" behavior="readwrite" uniqueId="57f0c90f-ebc8-47fb-98da-cbc01b714f43" type="System.String">
+          <orm:column name="Marking" sql-type="nvarchar" nullable="false" length="50" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_vendor" property="Vendor" behavior="readwrite" uniqueId="a3ea2d37-3241-4bde-a294-35694ba4cabb" type="System.String">
+          <orm:column nullable="true" length="100" name="Vendor" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_updatedOn" property="UpdatedOn" behavior="readwrite" uniqueId="d5cdb332-2961-4b19-9d05-d07edf740109" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column nullable="true" length="0" name="UpdatedOn" scale="0" sql-type="datetime" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_shelterdescriptions" property="Shelterdescriptions" behavior="readwrite" uniqueId="2c8f3c86-ae87-4a1d-a0bf-fd3703129dde" type="OimsDataModel.Shelterdescription">
+          <orm:collection element-class="OimsDataModel.Shelterdescription" inverse-field="_item" managed="true" order-by="" uniqueId="800d89f4-1966-4e1e-a1de-a38f2851737a" />
+        </orm:field>
+        <orm:field name="_itemsrequests" property="Itemsrequests" behavior="readwrite" uniqueId="83c319c1-5431-4ade-9742-8dbb91876990" type="OimsDataModel.Itemsrequest">
+          <orm:collection element-class="OimsDataModel.Itemsrequest" inverse-field="_item" managed="true" order-by="" uniqueId="bb22accc-99f7-486b-87bb-39f13e7d1867" />
+        </orm:field>
+        <orm:field name="_itemslogs" property="Itemslogs" behavior="readwrite" uniqueId="9f55efa5-c795-4d65-beb0-c0c464ec62e6" type="OimsDataModel.Itemslog">
+          <orm:collection element-class="OimsDataModel.Itemslog" inverse-field="_item" managed="true" order-by="" uniqueId="22011194-63d9-4c53-a99e-3aa6e5456c6c" />
+        </orm:field>
+        <orm:field name="_cartstuffs" property="Cartstuffs" behavior="readwrite" uniqueId="f75d7680-67d5-40ae-aad2-a0e1c9304d66" type="OimsDataModel.Cartstuff">
+          <orm:collection element-class="OimsDataModel.Cartstuff" inverse-field="_item" managed="true" order-by="" uniqueId="8a892ec8-1242-42af-a258-10c3ad568bc3" />
+        </orm:field>
+        <orm:field name="_allocateds" property="Allocateds" behavior="readwrite" uniqueId="0bfecdee-1e06-41e2-b21b-26bab2792481" type="OimsDataModel.Allocated">
+          <orm:collection element-class="OimsDataModel.Allocated" inverse-field="_item" managed="true" order-by="" uniqueId="cac47fce-cdba-4f2c-943c-e1bbfb27686c" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Company" uniqueId="718c8ce8-ac09-41bd-8409-615158e51e4c">
+        <orm:table name="companies" />
+        <orm:identity>
+          <orm:single-field field-name="_companyName" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_companyName" property="CompanyName" behavior="readwrite" uniqueId="c4153929-52b4-4599-b305-1e8705c5a181" type="System.String">
+          <orm:column name="CompanyName" sql-type="nvarchar" nullable="false" length="100" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_requests" property="Requests" behavior="readwrite" uniqueId="d74dbd5d-1752-45a4-b4cc-c63cc92f96c6" type="OimsDataModel.Request">
+          <orm:collection element-class="OimsDataModel.Request" inverse-field="_company" managed="true" order-by="" uniqueId="a86453f7-e006-42f4-a1cc-38f8b61cbd0e" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Cartstuff" uniqueId="69878f00-9610-4f51-856d-0a7b64a41794">
+        <orm:table name="cartstuff" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="2022cd50-dafd-4794-8a8f-1cb72df59c11" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_u_Id" property="U_Id" behavior="readwrite" uniqueId="2a583f3f-b3ca-472b-b308-f97391f5ff78" type="System.Int32">
+          <orm:column name="U_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_p_Id" property="P_Id" behavior="readwrite" uniqueId="0895346a-97c3-4409-93d3-bf309e65a9a0" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="P_Id" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_i_Id" property="I_Id" behavior="readwrite" uniqueId="0f028cf3-4ced-4832-81ea-e98f1a69863a" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="I_Id" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_quantity" property="Quantity" behavior="readwrite" uniqueId="57d7beda-16f4-4cda-a28e-5c7731e22014" type="System.Single">
+          <orm:column name="Quantity" sql-type="float" nullable="false" length="0" scale="0" has-default-value="true" ado-type="Real" />
+        </orm:field>
+        <orm:field name="_createdOnUtc" property="CreatedOnUtc" behavior="readwrite" uniqueId="4e4502b4-e56f-478a-8f78-ee8b2bbf9ac1" type="System.DateTime">
+          <orm:column name="CreatedOnUtc" sql-type="datetime" nullable="false" length="0" scale="0" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_item" property="Item" behavior="readwrite" uniqueId="aabdd075-b5ca-4f2b-9f94-4a4e9a1dc8e0" type="OimsDataModel.Item">
+          <orm:reference uniqueId="8a892ec8-1242-42af-a258-10c3ad568bc3">
+            <orm:sharedfield name="_i_Id" target-class="OimsDataModel.Item" target-field="_i_Id" />
+            <orm:constraint name="FK_ItemId" destination-table="items" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_shelter" property="Shelter" behavior="readwrite" uniqueId="57a206ea-3908-47d2-b6a5-6e752b6c82e8" type="OimsDataModel.Shelter">
+          <orm:reference uniqueId="571f9f13-7b2e-47db-90f5-e5133ab8ba41">
+            <orm:sharedfield name="_p_Id" target-class="OimsDataModel.Shelter" target-field="_p_Id" />
+            <orm:constraint name="FK_ProductId" destination-table="shelters" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_user" property="User" behavior="readwrite" uniqueId="14d4166a-e5c2-446d-bb30-fc6395906109" type="OimsDataModel.User">
+          <orm:reference uniqueId="d3d66ef3-d918-402d-a642-419ff1d22dbb">
+            <orm:sharedfield name="_u_Id" target-class="OimsDataModel.User" target-field="_u_Id" />
+            <orm:constraint name="FK_UserId" destination-table="users" />
+          </orm:reference>
+        </orm:field>
+      </orm:class>
+      <orm:class name="Allocated" uniqueId="5281cc2d-51ce-4cba-be42-7a6ae6508f07">
+        <orm:table name="allocated" />
+        <orm:identity>
+          <orm:key-generator name="autoinc" />
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="bbd68025-6125-4133-95d1-3d70eb0c6bb2" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_userId" property="UserId" behavior="readwrite" uniqueId="8022ad40-f9a0-48c7-b398-8110ca1dfc54" type="System.Int32">
+          <orm:column name="UserId" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_orderId" property="OrderId" behavior="readwrite" uniqueId="a3198b4c-55de-470a-8b3b-23a79e8e29b7" type="System.Int32">
+          <orm:column name="OrderId" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_itemId" property="ItemId" behavior="readwrite" uniqueId="e6706280-a6f7-4256-b3e8-53a26bd65ba2" type="System.Int32">
+          <orm:column name="ItemId" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_markQty" property="MarkQty" behavior="readwrite" uniqueId="468470fc-ee92-4740-a204-83ff6880c5a5" type="System.Single">
+          <orm:column name="MarkQty" sql-type="float" nullable="false" length="0" scale="0" ado-type="Real" />
+        </orm:field>
+        <orm:field name="_item" property="Item" behavior="readwrite" uniqueId="3699faf1-5256-47e1-ab3e-33a20d2bd101" type="OimsDataModel.Item">
+          <orm:reference uniqueId="cac47fce-cdba-4f2c-943c-e1bbfb27686c">
+            <orm:sharedfield name="_itemId" target-class="OimsDataModel.Item" target-field="_i_Id" />
+            <orm:constraint name="FK_Alloc_ItemId" destination-table="items" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_request" property="Request" behavior="readwrite" uniqueId="cc7683d5-5779-4832-a175-486e66bce508" type="OimsDataModel.Request">
+          <orm:reference uniqueId="c4708da1-7da0-4d08-8239-9a53a17ec514">
+            <orm:sharedfield name="_orderId" target-class="OimsDataModel.Request" target-field="_o_Id" />
+            <orm:constraint name="FK_Alloc_OrderId" destination-table="requests" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_user" property="User" behavior="readwrite" uniqueId="96ed138d-5290-4205-8508-0df7ab12da5b" type="OimsDataModel.User">
+          <orm:reference uniqueId="e449653b-9929-4bb3-9b23-c1ff0e373f91">
+            <orm:sharedfield name="_userId" target-class="OimsDataModel.User" target-field="_u_Id" />
+            <orm:constraint name="FK_Alloc_UserId" destination-table="users" />
+          </orm:reference>
+        </orm:field>
+      </orm:class>
+    </orm:namespace>
+    <orm:schema schema="">
+      <orm:table name="vendors">
+        <orm:column name="Name" sql-type="nvarchar" nullable="false" length="100" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Address" sql-type="nvarchar" nullable="true" length="100" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Phone" sql-type="nvarchar" nullable="true" length="10" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Email" sql-type="nvarchar" nullable="true" length="50" scale="0" ado-type="UnicodeStringVariableLength" />
+      </orm:table>
+      <orm:table name="users">
+        <orm:column name="U_Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="R_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="U_FirstName" sql-type="nvarchar" nullable="false" length="200" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="U_LastName" sql-type="nvarchar" nullable="true" length="200" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="U_Email" sql-type="nvarchar" nullable="false" length="200" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="U_Password" sql-type="nvarchar" nullable="false" length="200" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:constraint name="FK_Role" destination-table="role">
+          <orm:column name="R_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="sheltersrequest">
+        <orm:column name="OP_Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="O_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="P_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="OP_Quantity" sql-type="float" nullable="false" length="0" scale="0" ado-type="Real" />
+        <orm:column name="OP_ProdRecom" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="OP_Pending" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="OP_ProdAlloc" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="OP_CreatedBy" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="OP_CreatedDate" sql-type="datetime" nullable="false" length="0" scale="0" ado-type="DateTime" />
+        <orm:column name="OP_UpdatedBy" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="OP_UpdatedDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+        <orm:constraint name="FK_Order_ProductId" destination-table="shelters">
+          <orm:column name="P_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK__orders" destination-table="requests">
+          <orm:column name="O_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="shelters">
+        <orm:column name="P_Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="P_Name" sql-type="nvarchar" nullable="false" length="200" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="P_Dummy" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+      </orm:table>
+      <orm:table name="shelterdescription">
+        <orm:column name="PD_Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="P_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="I_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="I_Qty" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:constraint name="FK_items" destination-table="items">
+          <orm:column name="I_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK__products" destination-table="shelters">
+          <orm:column name="P_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="role">
+        <orm:column name="R_Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="R_Name" sql-type="nvarchar" nullable="false" length="200" scale="0" ado-type="UnicodeStringVariableLength" />
+      </orm:table>
+      <orm:table name="requeststatus">
+        <orm:column name="S_Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" />
+        <orm:column name="S_Name" sql-type="tinytext" nullable="false" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        <orm:column name="ForRole" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+      </orm:table>
+      <orm:table name="requests">
+        <orm:column name="O_Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="O_CreatedBy" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="O_CreatedDate" sql-type="datetime" nullable="false" length="0" scale="0" ado-type="DateTime" />
+        <orm:column name="O_UpdatedBy" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="O_UpdatedDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+        <orm:column name="O_Job" sql-type="nvarchar" nullable="true" length="100" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="O_Status" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="O_Company" sql-type="nvarchar" nullable="true" length="100" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:constraint name="FK_Company" destination-table="companies">
+          <orm:column name="O_Company" sql-type="nvarchar" nullable="true" length="100" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:constraint>
+        <orm:constraint name="FK_OrderStatus" destination-table="requeststatus">
+          <orm:column name="O_Status" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_User" destination-table="users">
+          <orm:column name="O_CreatedBy" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="itemsrequest">
+        <orm:column name="OI_Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="O_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="I_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="OI_Quantity" sql-type="float" nullable="false" length="0" scale="0" ado-type="Real" />
+        <orm:column name="OI_ItemRecom" sql-type="float" nullable="true" length="0" scale="0" ado-type="Real" />
+        <orm:column name="OI_ItemAlloc" sql-type="float" nullable="true" length="0" scale="0" ado-type="Real" />
+        <orm:column name="OI_Pending" sql-type="float" nullable="true" length="0" scale="0" ado-type="Real" />
+        <orm:column name="OI_CreatedBy" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="OI_CreatedDate" sql-type="datetime" nullable="false" length="0" scale="0" ado-type="DateTime" />
+        <orm:column name="OI_UpdatedBy" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="OI_UpdatedDate" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+        <orm:constraint name="FK_OrderId" destination-table="requests">
+          <orm:column name="O_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_Order_ItemId" destination-table="items">
+          <orm:column name="I_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="itemslog">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="ItemId" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="ItemQuantity" sql-type="float" nullable="false" length="0" scale="0" ado-type="Real" />
+        <orm:column name="VendorName" sql-type="nvarchar" nullable="false" length="100" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="EntryDate" sql-type="datetime" nullable="false" length="0" scale="0" ado-type="DateTime" />
+        <orm:constraint name="FKLog_ItemId" destination-table="items">
+          <orm:column name="ItemId" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FKLog_VName" destination-table="vendors">
+          <orm:column name="VendorName" sql-type="nvarchar" nullable="false" length="100" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="items">
+        <orm:column name="I_Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="I_Name" sql-type="nvarchar" nullable="false" length="200" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="I_Quantity" sql-type="float" nullable="false" length="0" scale="0" ado-type="Real" />
+        <orm:column name="Size" sql-type="nvarchar" nullable="false" length="50" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Marking" sql-type="nvarchar" nullable="false" length="50" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="100" name="Vendor" scale="0" sql-type="nvarchar" ado-type="UnicodeStringVariableLength" />
+        <orm:column nullable="true" length="0" name="UpdatedOn" scale="0" sql-type="datetime" ado-type="DateTime" />
+      </orm:table>
+      <orm:table name="companies">
+        <orm:column name="CompanyName" sql-type="nvarchar" nullable="false" length="100" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+      </orm:table>
+      <orm:table name="cartstuff">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="U_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="P_Id" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="I_Id" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="Quantity" sql-type="float" nullable="false" length="0" scale="0" has-default-value="true" ado-type="Real" />
+        <orm:column name="CreatedOnUtc" sql-type="datetime" nullable="false" length="0" scale="0" ado-type="DateTime" />
+        <orm:constraint name="FK_ItemId" destination-table="items">
+          <orm:column name="I_Id" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_ProductId" destination-table="shelters">
+          <orm:column name="P_Id" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_UserId" destination-table="users">
+          <orm:column name="U_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="allocated">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="UserId" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="OrderId" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="ItemId" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="MarkQty" sql-type="float" nullable="false" length="0" scale="0" ado-type="Real" />
+        <orm:constraint name="FK_Alloc_ItemId" destination-table="items">
+          <orm:column name="ItemId" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_Alloc_OrderId" destination-table="requests">
+          <orm:column name="OrderId" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_Alloc_UserId" destination-table="users">
+          <orm:column name="UserId" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+    </orm:schema>
+    <orm:relational-naming-settings>
+      <orm:remove-camel-case>False</orm:remove-camel-case>
+      <orm:source-strategy>Property</orm:source-strategy>
+    </orm:relational-naming-settings>
+  </orm:orm>
+  <ModelSettings xmlns="">
+    <AppConfigConnectionPropertyName>OimsConString</AppConfigConnectionPropertyName>
+    <AppConfigConnectionString>server=127.0.0.1;database=inventory;uid=root;pwd=god</AppConfigConnectionString>
+    <NamingSettings>
+      <ClassRules>
+        <CaseMode>PascalCase</CaseMode>
+        <PluralizationMode>Singularize</PluralizationMode>
+      </ClassRules>
+      <FieldRules>
+        <AddPrefix>_</AddPrefix>
+        <CaseMode>CamelCase</CaseMode>
+      </FieldRules>
+      <PropertyRules>
+        <CaseMode>PascalCase</CaseMode>
+      </PropertyRules>
+    </NamingSettings>
+    <CodeGenerationSettings>
+      <MappingDefinitionType>Xml</MappingDefinitionType>
+    </CodeGenerationSettings>
+    <SchemaUpdateSettings />
+    <BackendConfigurationSettings>
+      <BackendConfiguration>
+        <Backend>MySql</Backend>
+        <ProviderName>MySql.Data.MySqlClient</ProviderName>
+      </BackendConfiguration>
+    </BackendConfigurationSettings>
+  </ModelSettings>
+  <Types>
+    <DomainClass Id="f3f2712a-a25a-4800-a5a7-1ef27f2e5e95" name="Vendor" namespace="OimsDataModel" showPropertiesCompartment="true" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="6ecc59ae-2002-4bf6-967a-a77ca2e6c89c" name="Name" label="Name : String" kind="Persistent" identity="true" fieldName="_name" />
+      <Property Id="a3d24349-1836-40b9-be17-237542b00969" name="Address" label="Address : String" kind="Persistent" fieldName="_address" />
+      <Property Id="cd08b7f2-3659-4a45-9656-7023016d135c" name="Email" label="Email : String" kind="Persistent" fieldName="_email" />
+      <Property Id="ab9209ce-82b2-47f5-97bd-95c2f99fdb1d" name="Phone" label="Phone : String" nullable="true" kind="Persistent" fieldName="_phone" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="15eefaab-4d0a-4b9b-a46a-6209133d9014">
+          <NavigationalProperty Id="3b80c1bd-216a-45d3-a760-0a501a8cc93a" name="Itemslogs" type="IList&lt;Itemslog&gt;" label="Itemslogs : IList&lt;Itemslog&gt;" nullable="true" kind="Persistent" fieldName="_itemslogs" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="3cdccec7-7781-4d8f-8c8b-7bbe1e0d5e60" name="User" namespace="OimsDataModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="e52e52a5-59b1-40f0-ac97-939e1afed02a" name="U_Id" type="Int32" label="U_Id : Int32" kind="Persistent" identity="true" fieldName="_u_Id" />
+      <Property Id="844964a1-92b4-455d-ad67-3590d7609c8a" name="R_Id" type="Int32" label="R_Id : Int32" kind="Persistent" fieldName="_r_Id" />
+      <Property Id="ed55b2f5-3a2f-4a01-8b95-74ee19eb9636" name="U_Email" label="U_Email : String" kind="Persistent" fieldName="_u_Email" />
+      <Property Id="65edfd33-7f1b-4a5d-9688-7aa6016f7829" name="U_FirstName" label="U_FirstName : String" kind="Persistent" fieldName="_u_FirstName" />
+      <Property Id="a955ec44-13b4-4cf3-8875-a0a685bd5986" name="U_LastName" label="U_LastName : String" kind="Persistent" fieldName="_u_LastName" />
+      <Property Id="a8ed1900-f6fa-43dc-8244-0ef0e9ee9521" name="U_Password" label="U_Password : String" kind="Persistent" fieldName="_u_Password" />
+      <AssociationTargets>
+        <Association Id="8086dcb1-3608-43f3-9cf7-e4f0c73a456a" SourceMultiplicity="One" name="UserHasRole">
+          <DomainClassMoniker name="/OimsDbContext/Role" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="26ab4383-e20e-4303-a482-aaf8bdbfe630">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Role/Users" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="6905c364-7530-4cbb-8563-38163b910bd2">
+              <NavigationalPropertyMoniker name="/OimsDbContext/User/Role" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="46ddf618-8b8e-42f7-b722-6df9e0042afd">
+          <NavigationalProperty Id="ed591368-7583-4a5f-9363-91f3605d8a17" name="Role" type="Role" label="Role : Role" nullable="true" kind="Persistent" fieldName="_role" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="0aa8ae7c-c9a8-421a-b28d-e13fb7a5ea8f">
+          <NavigationalProperty Id="438644ea-b922-4f53-95a4-f9ab9579e05d" name="Requests" type="IList&lt;Request&gt;" label="Requests : IList&lt;Request&gt;" nullable="true" kind="Persistent" fieldName="_requests" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="19dd3eb5-5b61-4808-856d-ed6352e4a9b0">
+          <NavigationalProperty Id="1c548ba4-1d25-4fd1-97e8-e3546cfd9931" name="Cartstuffs" type="IList&lt;Cartstuff&gt;" label="Cartstuffs : IList&lt;Cartstuff&gt;" nullable="true" kind="Persistent" fieldName="_cartstuffs" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="9acf259d-4b41-45f7-8990-453bcf66c540">
+          <NavigationalProperty Id="102d43c5-dcbf-4536-9442-ac9f340a670d" name="Allocateds" type="IList&lt;Allocated&gt;" label="Allocateds : IList&lt;Allocated&gt;" nullable="true" kind="Persistent" fieldName="_allocateds" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="326cf110-ad60-4b74-8e78-3d04d9811415" name="Sheltersrequest" namespace="OimsDataModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="8b1ed6bb-4ef3-4940-89dc-f4e1a28950bb" name="OP_Id" type="Int32" label="OP_Id : Int32" kind="Persistent" identity="true" fieldName="_oP_Id" />
+      <Property Id="6aa1b6b6-d0fc-434a-97b9-2df46b5c3d6e" name="O_Id" type="Int32" label="O_Id : Int32" kind="Persistent" fieldName="_o_Id" />
+      <Property Id="f32b24d7-8bd3-4617-9002-bbf3446ceded" name="OP_CreatedBy" type="Int32" label="OP_CreatedBy : Int32" kind="Persistent" fieldName="_oP_CreatedBy" />
+      <Property Id="14c9735c-bc68-4821-8dab-4ca0f7492abe" name="OP_CreatedDate" type="DateTime" label="OP_CreatedDate : DateTime" kind="Persistent" fieldName="_oP_CreatedDate" />
+      <Property Id="64621151-6e80-462a-ac26-61fee0d82418" name="OP_Pending" type="Int32" label="OP_Pending : Int32" nullable="true" kind="Persistent" fieldName="_oP_Pending" />
+      <Property Id="ba444b46-22f8-4f36-ae8d-088efca90b51" name="OP_ProdAlloc" type="Int32" label="OP_ProdAlloc : Int32" nullable="true" kind="Persistent" fieldName="_oP_ProdAlloc" />
+      <Property Id="8431a79e-3aaf-4630-8246-db1ad4aea830" name="OP_ProdRecom" type="Int32" label="OP_ProdRecom : Int32" nullable="true" kind="Persistent" fieldName="_oP_ProdRecom" />
+      <Property Id="bcdcfde7-ff3d-41cf-9701-f5213f9286e8" name="OP_Quantity" type="Single" label="OP_Quantity : Single" kind="Persistent" fieldName="_oP_Quantity" />
+      <Property Id="8b7d5344-a22e-48c8-8af4-6c1051e776ef" name="OP_UpdatedBy" type="Int32" label="OP_UpdatedBy : Int32" nullable="true" kind="Persistent" fieldName="_oP_UpdatedBy" />
+      <Property Id="adb7b5cc-a573-46ad-a4fc-215564bdebf1" name="OP_UpdatedDate" type="DateTime" label="OP_UpdatedDate : DateTime" nullable="true" kind="Persistent" fieldName="_oP_UpdatedDate" />
+      <Property Id="cc0ff4c7-8419-4783-840d-2cf02f42eccd" name="P_Id" type="Int32" label="P_Id : Int32" kind="Persistent" fieldName="_p_Id" />
+      <AssociationTargets>
+        <Association Id="0318cca7-5e2d-4565-8ad3-7503b55e5755" SourceMultiplicity="One" name="SheltersrequestHasShelter">
+          <DomainClassMoniker name="/OimsDbContext/Shelter" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="74d604e9-b19f-4b90-aed3-0a3a64c5fc79">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Shelter/Sheltersrequests" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="e0cec907-b1f6-457e-b29f-74a725ad4739">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Sheltersrequest/Shelter" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="e90247ab-a915-4a89-a37c-274a8c8afdd6" SourceMultiplicity="One" name="SheltersrequestHasRequest">
+          <DomainClassMoniker name="/OimsDbContext/Request" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="ff9562c2-7d6a-40e9-abfe-c5a8cff6949f">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Request/Sheltersrequests" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="8c038858-fe98-4e09-8fad-3a51eaebc03f">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Sheltersrequest/Request" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="281b59c4-bfc8-43d8-b94b-159aca2d424c">
+          <NavigationalProperty Id="3cd98b56-4024-4326-9d62-feed9f136beb" name="Shelter" type="Shelter" label="Shelter : Shelter" nullable="true" kind="Persistent" fieldName="_shelter" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="1739039c-8e6f-47dd-9ffa-977098c29ea6">
+          <NavigationalProperty Id="e0571350-4526-4833-beb6-1e3f7f964ca9" name="Request" type="Request" label="Request : Request" nullable="true" kind="Persistent" fieldName="_request" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="a1423912-a5d7-4f48-9c13-5475eb73396d" name="Shelter" namespace="OimsDataModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="a3a64efb-f04b-47b0-976f-538df5ab5b14" name="P_Id" type="Int32" label="P_Id : Int32" kind="Persistent" identity="true" fieldName="_p_Id" />
+      <Property Id="981ae5ba-f870-4d13-b078-036303846a0a" name="P_Dummy" type="Int32" label="P_Dummy : Int32" nullable="true" kind="Persistent" fieldName="_p_Dummy" />
+      <Property Id="e47e2460-6a40-4fc9-88c5-fd0ccec65fe8" name="P_Name" label="P_Name : String" kind="Persistent" fieldName="_p_Name" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="29b8fabc-4b33-46fe-be80-ffea650a3af5">
+          <NavigationalProperty Id="395e40d6-bc04-4243-9ee7-8c8a6a90a85f" name="Sheltersrequests" type="IList&lt;Sheltersrequest&gt;" label="Sheltersrequests : IList&lt;Sheltersrequest&gt;" nullable="true" kind="Persistent" fieldName="_sheltersrequests" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="44ebb862-e6f3-431d-a38e-5074cda6d225">
+          <NavigationalProperty Id="b54bd060-c008-4a46-ae3d-e701db2d80f8" name="Shelterdescriptions" type="IList&lt;Shelterdescription&gt;" label="Shelterdescriptions : IList&lt;Shelterdescription&gt;" nullable="true" kind="Persistent" fieldName="_shelterdescriptions" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="cd0b385c-2c86-4efb-8113-73321dc0d0c6">
+          <NavigationalProperty Id="e071f35d-2b0c-45c0-97d7-c5736197bd0f" name="Cartstuffs" type="IList&lt;Cartstuff&gt;" label="Cartstuffs : IList&lt;Cartstuff&gt;" nullable="true" kind="Persistent" fieldName="_cartstuffs" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="b989d926-060a-49ba-b228-73cfddf2a127" name="Shelterdescription" namespace="OimsDataModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="8074e7cd-6815-484e-a91d-feff83377563" name="PD_Id" type="Int32" label="PD_Id : Int32" kind="Persistent" identity="true" fieldName="_pD_Id" />
+      <Property Id="68fb3273-8ddf-4b27-89f6-98bbf37be16e" name="I_Id" type="Int32" label="I_Id : Int32" kind="Persistent" fieldName="_i_Id" />
+      <Property Id="c7e8ac3b-0be5-4745-8b80-b10d563786b4" name="I_Qty" type="Int32" label="I_Qty : Int32" kind="Persistent" fieldName="_i_Qty" />
+      <Property Id="7121fd24-da2e-42f3-a577-8e8b5832777f" name="P_Id" type="Int32" label="P_Id : Int32" kind="Persistent" fieldName="_p_Id" />
+      <AssociationTargets>
+        <Association Id="800d89f4-1966-4e1e-a1de-a38f2851737a" SourceMultiplicity="One" name="ShelterdescriptionHasItem">
+          <DomainClassMoniker name="/OimsDbContext/Item" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="3104326c-155d-46c4-9ce7-8aef0c996b4a">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Item/Shelterdescriptions" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="d359859b-b279-422f-9563-16e78d71f86b">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Shelterdescription/Item" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="93717831-b42e-40a5-8ce2-f651fb6a6feb" SourceMultiplicity="One" name="ShelterdescriptionHasShelter">
+          <DomainClassMoniker name="/OimsDbContext/Shelter" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="db1ad728-d3b2-4d87-a441-9747f91a5336">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Shelter/Shelterdescriptions" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="e4e3b45e-3316-40c6-a6f6-3cf7a2a619f2">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Shelterdescription/Shelter" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="f2c008d1-7b77-4e3a-8a26-3d3705e01751">
+          <NavigationalProperty Id="0e466a6e-0499-4a24-87ca-2b8144e60c4a" name="Item" type="Item" label="Item : Item" nullable="true" kind="Persistent" fieldName="_item" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="22264fae-a76d-418c-82aa-ad8b76217c3c">
+          <NavigationalProperty Id="a526e0e6-bf1a-47e2-b601-510fda69839d" name="Shelter" type="Shelter" label="Shelter : Shelter" nullable="true" kind="Persistent" fieldName="_shelter" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="d8b1ce91-71f3-4c32-ade1-04fbd6ffbf32" name="Role" namespace="OimsDataModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="7fcfe8ec-ee0c-45ee-b817-8ff4492d13bf" name="R_Id" type="Int32" label="R_Id : Int32" kind="Persistent" identity="true" fieldName="_r_Id" />
+      <Property Id="043cfa8c-26fd-4bda-8104-42881583395d" name="R_Name" label="R_Name : String" kind="Persistent" fieldName="_r_Name" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="5183b41b-2789-4706-8b72-6c6935b09b6d">
+          <NavigationalProperty Id="8b364133-4d6e-409c-8567-e8899f2c5166" name="Users" type="IList&lt;User&gt;" label="Users : IList&lt;User&gt;" nullable="true" kind="Persistent" fieldName="_users" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="88359aae-9613-481a-9734-ea856281c223" name="Requeststatus" namespace="OimsDataModel" showPropertiesCompartment="true" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="15cd995a-9971-4310-9c69-04f94fcea27b" name="S_Id" type="Int32" label="S_Id : Int32" kind="Persistent" identity="true" fieldName="_s_Id" />
+      <Property Id="07aba6bc-b217-4cd4-b9ad-c87e64b4cae4" name="ForRole" type="Int32" label="ForRole : Int32" kind="Persistent" fieldName="_forRole" />
+      <Property Id="e5f06693-a83a-4713-b661-8da2f3c153ec" name="S_Name" label="S_Name : String" kind="Persistent" fieldName="_s_Name" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="89a72879-af39-42ae-ac40-33da5bb3a786">
+          <NavigationalProperty Id="5852fbb0-7852-4cf3-8592-d2e6021924ba" name="Requests" type="IList&lt;Request&gt;" label="Requests : IList&lt;Request&gt;" nullable="true" kind="Persistent" fieldName="_requests" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="941f52b7-4b03-4dd8-a00e-ec66d980a9e5" name="Request" namespace="OimsDataModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="739c710d-94f2-4b25-b0d5-528a173e973c" name="O_Id" type="Int32" label="O_Id : Int32" kind="Persistent" identity="true" fieldName="_o_Id" />
+      <Property Id="cc16b3f2-f786-41d3-986a-61b2cb6e283e" name="O_Company" label="O_Company : String" kind="Persistent" fieldName="_o_Company" />
+      <Property Id="19d7b0cb-d86d-453a-bf8f-529609c6244f" name="O_CreatedBy" type="Int32" label="O_CreatedBy : Int32" kind="Persistent" fieldName="_o_CreatedBy" />
+      <Property Id="68863d9e-c8e9-4d79-9c02-82d852c12055" name="O_CreatedDate" type="DateTime" label="O_CreatedDate : DateTime" kind="Persistent" fieldName="_o_CreatedDate" />
+      <Property Id="0fd430a3-6481-413a-b8b7-aa6f1b6d715a" name="O_Job" label="O_Job : String" kind="Persistent" fieldName="_o_Job" />
+      <Property Id="4a8fb575-ba3e-49fc-8d13-7b76b68bdf65" name="O_Status" type="Int32" label="O_Status : Int32" kind="Persistent" fieldName="_o_Status" />
+      <Property Id="431c45ab-1815-4b38-bcd4-10ef2eb6956d" name="O_UpdatedBy" type="Int32" label="O_UpdatedBy : Int32" nullable="true" kind="Persistent" fieldName="_o_UpdatedBy" />
+      <Property Id="b23587ef-f02b-41a1-a965-406275649b30" name="O_UpdatedDate" type="DateTime" label="O_UpdatedDate : DateTime" nullable="true" kind="Persistent" fieldName="_o_UpdatedDate" />
+      <AssociationTargets>
+        <Association Id="a86453f7-e006-42f4-a1cc-38f8b61cbd0e" SourceMultiplicity="ZeroOne" name="RequestHasCompany">
+          <DomainClassMoniker name="/OimsDbContext/Company" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="1c98621c-ffa1-4b00-838a-948545f1ac67">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Company/Requests" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="6be6963e-a106-48e2-a203-f3a46235fb26">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Request/Company" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="d2750ce3-55b4-4a7b-a8f4-e002db4ac797" SourceMultiplicity="One" name="RequestHasRequeststatus">
+          <DomainClassMoniker name="/OimsDbContext/Requeststatus" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="38410732-832b-40f1-b7fd-2da1d8d29330">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Requeststatus/Requests" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="7fcf1730-4741-41e4-9a9a-36e92ceaae52">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Request/Requeststatus" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="49a6c6c6-eb06-4277-bca8-10bde8cd409d" SourceMultiplicity="One" name="RequestHasUser">
+          <DomainClassMoniker name="/OimsDbContext/User" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="7c551052-336a-4cf4-bbdc-979ae021641a">
+              <NavigationalPropertyMoniker name="/OimsDbContext/User/Requests" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="07f01a5c-6c6b-4692-b9fe-8c446e9a3564">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Request/User" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="6b3e3a98-d4a6-48fd-a7c0-971fcd9441d1">
+          <NavigationalProperty Id="201dbbae-66a8-4562-8b73-407d4463ac86" name="Sheltersrequests" type="IList&lt;Sheltersrequest&gt;" label="Sheltersrequests : IList&lt;Sheltersrequest&gt;" nullable="true" kind="Persistent" fieldName="_sheltersrequests" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="f8f71c76-2dba-4b19-a0d0-e699054939f5">
+          <NavigationalProperty Id="d715c1c6-f3dd-4026-95bf-01a86422679a" name="Company" type="Company" label="Company : Company" nullable="true" kind="Persistent" fieldName="_company" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="26af00e9-5a3f-4bdd-94f8-d385565be212">
+          <NavigationalProperty Id="c22bf023-b164-4bb6-bcf1-8333fd505d39" name="Requeststatus" type="Requeststatus" label="Requeststatus : Requeststatus" nullable="true" kind="Persistent" fieldName="_requeststatus" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="4a85be02-8c25-4164-8550-93524173d0e0">
+          <NavigationalProperty Id="5c47bf58-ec04-45dc-bc03-4f02b28a3514" name="User" type="User" label="User : User" nullable="true" kind="Persistent" fieldName="_user" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="f46c081a-4903-4453-b8ed-97dd059f4510">
+          <NavigationalProperty Id="38da58dc-684a-4091-9668-b4feaf91729d" name="Itemsrequests" type="IList&lt;Itemsrequest&gt;" label="Itemsrequests : IList&lt;Itemsrequest&gt;" nullable="true" kind="Persistent" fieldName="_itemsrequests" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="831ffe2f-9f9b-4416-85c8-1e2773c03055">
+          <NavigationalProperty Id="7a9ecbba-20d3-41a5-ac59-0727c498051d" name="Allocateds" type="IList&lt;Allocated&gt;" label="Allocateds : IList&lt;Allocated&gt;" nullable="true" kind="Persistent" fieldName="_allocateds" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="d823cb3c-6733-40b4-9772-fc1ec1165d64" name="Itemsrequest" namespace="OimsDataModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="b86dce66-8ff7-4a13-93ae-dfbd5fe7a917" name="OI_Id" type="Int32" label="OI_Id : Int32" kind="Persistent" identity="true" fieldName="_oI_Id" />
+      <Property Id="8ba2a561-7ac7-4467-8c90-0f1fbbe4ebbb" name="I_Id" type="Int32" label="I_Id : Int32" kind="Persistent" fieldName="_i_Id" />
+      <Property Id="8671ab2f-b0da-40a3-a59d-3929a9b288dc" name="O_Id" type="Int32" label="O_Id : Int32" kind="Persistent" fieldName="_o_Id" />
+      <Property Id="68fa0e8a-c11a-479b-9666-46db9e0832a0" name="OI_CreatedBy" type="Int32" label="OI_CreatedBy : Int32" kind="Persistent" fieldName="_oI_CreatedBy" />
+      <Property Id="89ca7437-e999-4e89-8eeb-81f41b4c6884" name="OI_CreatedDate" type="DateTime" label="OI_CreatedDate : DateTime" kind="Persistent" fieldName="_oI_CreatedDate" />
+      <Property Id="2332d31f-8023-4dc2-ae1b-fbf2a558ea50" name="OI_ItemAlloc" type="Single" label="OI_ItemAlloc : Single" nullable="true" kind="Persistent" fieldName="_oI_ItemAlloc" />
+      <Property Id="2f56628b-bb0a-4c44-bd84-c089dc97f079" name="OI_ItemRecom" type="Single" label="OI_ItemRecom : Single" nullable="true" kind="Persistent" fieldName="_oI_ItemRecom" />
+      <Property Id="69f0d9c7-ba0f-428e-8713-3d3209e9bd5e" name="OI_Pending" type="Single" label="OI_Pending : Single" nullable="true" kind="Persistent" fieldName="_oI_Pending" />
+      <Property Id="ef93a23d-5ffd-4467-95fa-43e542d48622" name="OI_Quantity" type="Single" label="OI_Quantity : Single" kind="Persistent" fieldName="_oI_Quantity" />
+      <Property Id="e3e43e3a-8aaa-4e3d-9ff9-c01c17f3259a" name="OI_UpdatedBy" type="Int32" label="OI_UpdatedBy : Int32" nullable="true" kind="Persistent" fieldName="_oI_UpdatedBy" />
+      <Property Id="795bc5cf-a0e8-4a0f-8d00-584c94fb7363" name="OI_UpdatedDate" type="DateTime" label="OI_UpdatedDate : DateTime" nullable="true" kind="Persistent" fieldName="_oI_UpdatedDate" />
+      <AssociationTargets>
+        <Association Id="ce850d84-926d-495e-bc91-50b8baae0863" SourceMultiplicity="One" name="ItemsrequestHasRequest">
+          <DomainClassMoniker name="/OimsDbContext/Request" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="7cc9e0df-3cb5-47ae-b4fa-4c661602845d">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Request/Itemsrequests" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="4df5e2d2-bfe9-4281-a55b-92f7cdcd85db">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Itemsrequest/Request" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="bb22accc-99f7-486b-87bb-39f13e7d1867" SourceMultiplicity="One" name="ItemsrequestHasItem">
+          <DomainClassMoniker name="/OimsDbContext/Item" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="af1fd966-3d31-4f49-a21e-0d61ff2adc3a">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Item/Itemsrequests" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="4206e603-1be7-4f5d-ae20-1c62b550bdae">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Itemsrequest/Item" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="8feb7a86-d76f-445f-a7c7-c35a9f3fab5f">
+          <NavigationalProperty Id="66837cd7-5a80-4280-80d6-af0accc49882" name="Request" type="Request" label="Request : Request" nullable="true" kind="Persistent" fieldName="_request" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="c17078ee-60c4-44cd-beb0-cf3e5e719cd1">
+          <NavigationalProperty Id="ef95d9ad-97f7-4d07-a2d2-cb593d0e9a72" name="Item" type="Item" label="Item : Item" nullable="true" kind="Persistent" fieldName="_item" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="24896162-4e42-4ed0-b529-6971bc047d8a" name="Itemslog" namespace="OimsDataModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="030e1ac5-d6f6-454c-b366-a724187102b3" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="0ffd2cd8-1b5d-42b3-875b-bee9def6a922" name="EntryDate" type="DateTime" label="EntryDate : DateTime" kind="Persistent" fieldName="_entryDate" />
+      <Property Id="494efde9-17d6-416c-95e9-4331a1edae21" name="ItemId" type="Int32" label="ItemId : Int32" kind="Persistent" fieldName="_itemId" />
+      <Property Id="09b65462-6968-41a2-9e5f-ab8ec83ebb88" name="ItemQuantity" type="Single" label="ItemQuantity : Single" kind="Persistent" fieldName="_itemQuantity" />
+      <Property Id="212e3ecb-7cc8-4ee5-ab13-f7cf06b784e4" name="VendorName" label="VendorName : String" kind="Persistent" fieldName="_vendorName" />
+      <AssociationTargets>
+        <Association Id="22011194-63d9-4c53-a99e-3aa6e5456c6c" SourceMultiplicity="One" name="ItemslogHasItem">
+          <DomainClassMoniker name="/OimsDbContext/Item" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="6df44c16-8646-47a0-b73e-28d136985526">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Item/Itemslogs" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="751f5d48-a1b9-49d2-ad0c-6e9c10b18793">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Itemslog/Item" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="a6d646e0-7386-4f51-8327-f33840db5b54" SourceMultiplicity="One" name="ItemslogHasVendor">
+          <DomainClassMoniker name="/OimsDbContext/Vendor" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="6739585f-8a44-4fd2-87a7-0ba1312f245c">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Vendor/Itemslogs" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="d0656083-d7d5-4804-a49c-03b0bcc58340">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Itemslog/Vendor" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="d0c05cc1-f0cd-4118-b9d6-50d366b18b04">
+          <NavigationalProperty Id="068a7bcc-1f5f-4da1-908b-9b40ded077a8" name="Item" type="Item" label="Item : Item" nullable="true" kind="Persistent" fieldName="_item" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="c194ee09-11aa-41df-b04e-80cc3236940d">
+          <NavigationalProperty Id="281796a5-ef8b-4209-9606-db065af3b4ce" name="Vendor" type="Vendor" label="Vendor : Vendor" nullable="true" kind="Persistent" fieldName="_vendor" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="9463040a-6b73-419a-be2c-1aa6c865059d" name="Item" namespace="OimsDataModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="49bf6dd8-b2b7-4562-b509-1843a26afbfd" name="I_Id" type="Int32" label="I_Id : Int32" kind="Persistent" identity="true" fieldName="_i_Id" />
+      <Property Id="caa33f28-5823-49fd-b45b-1b53338c5829" name="I_Name" label="I_Name : String" kind="Persistent" fieldName="_i_Name" />
+      <Property Id="cc3dcce0-c191-4d85-8212-2956c5aaf078" name="I_Quantity" type="Single" label="I_Quantity : Single" kind="Persistent" fieldName="_i_Quantity" />
+      <Property Id="57f0c90f-ebc8-47fb-98da-cbc01b714f43" name="Marking" label="Marking : String" kind="Persistent" fieldName="_marking" />
+      <Property Id="ae761f26-d45b-4026-a38b-78244ae1ff32" name="Size" label="Size : String" kind="Persistent" fieldName="_size" />
+      <Property Id="a3ea2d37-3241-4bde-a294-35694ba4cabb" name="Vendor" label="Vendor : String" kind="Persistent" fieldName="_vendor" />
+      <Property Id="d5cdb332-2961-4b19-9d05-d07edf740109" name="UpdatedOn" type="DateTime" label="UpdatedOn : DateTime" nullable="true" kind="Persistent" fieldName="_updatedOn" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="4c7b5073-e705-4eef-a168-0598b848aaed">
+          <NavigationalProperty Id="2c8f3c86-ae87-4a1d-a0bf-fd3703129dde" name="Shelterdescriptions" type="IList&lt;Shelterdescription&gt;" label="Shelterdescriptions : IList&lt;Shelterdescription&gt;" nullable="true" kind="Persistent" fieldName="_shelterdescriptions" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="a52fd7b4-d7f2-4e5d-ab4a-791de7905fb7">
+          <NavigationalProperty Id="83c319c1-5431-4ade-9742-8dbb91876990" name="Itemsrequests" type="IList&lt;Itemsrequest&gt;" label="Itemsrequests : IList&lt;Itemsrequest&gt;" nullable="true" kind="Persistent" fieldName="_itemsrequests" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="609a5815-c5b7-4f9d-b607-178671aa862e">
+          <NavigationalProperty Id="9f55efa5-c795-4d65-beb0-c0c464ec62e6" name="Itemslogs" type="IList&lt;Itemslog&gt;" label="Itemslogs : IList&lt;Itemslog&gt;" nullable="true" kind="Persistent" fieldName="_itemslogs" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="8cd20fab-8daf-426c-b229-13b3ef6177cd">
+          <NavigationalProperty Id="f75d7680-67d5-40ae-aad2-a0e1c9304d66" name="Cartstuffs" type="IList&lt;Cartstuff&gt;" label="Cartstuffs : IList&lt;Cartstuff&gt;" nullable="true" kind="Persistent" fieldName="_cartstuffs" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="6c70cb3d-738c-4819-80c4-ed1b2ca9d5a3">
+          <NavigationalProperty Id="0bfecdee-1e06-41e2-b21b-26bab2792481" name="Allocateds" type="IList&lt;Allocated&gt;" label="Allocateds : IList&lt;Allocated&gt;" nullable="true" kind="Persistent" fieldName="_allocateds" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="718c8ce8-ac09-41bd-8409-615158e51e4c" name="Company" namespace="OimsDataModel" showPropertiesCompartment="true" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="c4153929-52b4-4599-b305-1e8705c5a181" name="CompanyName" label="CompanyName : String" kind="Persistent" identity="true" fieldName="_companyName" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="021a63f1-6e7d-4260-b715-1da65eaf87b7">
+          <NavigationalProperty Id="d74dbd5d-1752-45a4-b4cc-c63cc92f96c6" name="Requests" type="IList&lt;Request&gt;" label="Requests : IList&lt;Request&gt;" nullable="true" kind="Persistent" fieldName="_requests" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="69878f00-9610-4f51-856d-0a7b64a41794" name="Cartstuff" namespace="OimsDataModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="2022cd50-dafd-4794-8a8f-1cb72df59c11" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="4e4502b4-e56f-478a-8f78-ee8b2bbf9ac1" name="CreatedOnUtc" type="DateTime" label="CreatedOnUtc : DateTime" kind="Persistent" fieldName="_createdOnUtc" />
+      <Property Id="0f028cf3-4ced-4832-81ea-e98f1a69863a" name="I_Id" type="Int32" label="I_Id : Int32" nullable="true" kind="Persistent" fieldName="_i_Id" />
+      <Property Id="0895346a-97c3-4409-93d3-bf309e65a9a0" name="P_Id" type="Int32" label="P_Id : Int32" nullable="true" kind="Persistent" fieldName="_p_Id" />
+      <Property Id="57d7beda-16f4-4cda-a28e-5c7731e22014" name="Quantity" type="Single" label="Quantity : Single" kind="Persistent" fieldName="_quantity" />
+      <Property Id="2a583f3f-b3ca-472b-b308-f97391f5ff78" name="U_Id" type="Int32" label="U_Id : Int32" kind="Persistent" fieldName="_u_Id" />
+      <AssociationTargets>
+        <Association Id="8a892ec8-1242-42af-a258-10c3ad568bc3" SourceMultiplicity="ZeroOne" name="CartstuffHasItem">
+          <DomainClassMoniker name="/OimsDbContext/Item" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="faeb6b04-b963-4d83-bb0f-1906baeb2a9a">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Item/Cartstuffs" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="572d0307-b0c9-4753-a387-56587177816f">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Cartstuff/Item" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="571f9f13-7b2e-47db-90f5-e5133ab8ba41" SourceMultiplicity="ZeroOne" name="CartstuffHasShelter">
+          <DomainClassMoniker name="/OimsDbContext/Shelter" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="9d02107e-f320-4d1d-8002-a662190ad0d8">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Shelter/Cartstuffs" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="e4dc40cf-82b1-419f-9035-5ece2dbcec73">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Cartstuff/Shelter" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="d3d66ef3-d918-402d-a642-419ff1d22dbb" SourceMultiplicity="One" name="CartstuffHasUser">
+          <DomainClassMoniker name="/OimsDbContext/User" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="cf1aedf9-9c80-492f-8af3-ea59a2460ba2">
+              <NavigationalPropertyMoniker name="/OimsDbContext/User/Cartstuffs" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="4c3d3f88-1d80-415e-8685-75097eb1269d">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Cartstuff/User" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="b810f609-68f1-4dfa-bb65-232e06747f05">
+          <NavigationalProperty Id="aabdd075-b5ca-4f2b-9f94-4a4e9a1dc8e0" name="Item" type="Item" label="Item : Item" nullable="true" kind="Persistent" fieldName="_item" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="e3c725a6-b4be-40de-8200-39aa8b1af3be">
+          <NavigationalProperty Id="57a206ea-3908-47d2-b6a5-6e752b6c82e8" name="Shelter" type="Shelter" label="Shelter : Shelter" nullable="true" kind="Persistent" fieldName="_shelter" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="e2f9fd13-e4ec-4c52-82b4-0ef26f065b97">
+          <NavigationalProperty Id="14d4166a-e5c2-446d-bb30-fc6395906109" name="User" type="User" label="User : User" nullable="true" kind="Persistent" fieldName="_user" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="5281cc2d-51ce-4cba-be42-7a6ae6508f07" name="Allocated" namespace="OimsDataModel" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="bbd68025-6125-4133-95d1-3d70eb0c6bb2" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="e6706280-a6f7-4256-b3e8-53a26bd65ba2" name="ItemId" type="Int32" label="ItemId : Int32" kind="Persistent" fieldName="_itemId" />
+      <Property Id="468470fc-ee92-4740-a204-83ff6880c5a5" name="MarkQty" type="Single" label="MarkQty : Single" kind="Persistent" fieldName="_markQty" />
+      <Property Id="a3198b4c-55de-470a-8b3b-23a79e8e29b7" name="OrderId" type="Int32" label="OrderId : Int32" kind="Persistent" fieldName="_orderId" />
+      <Property Id="8022ad40-f9a0-48c7-b398-8110ca1dfc54" name="UserId" type="Int32" label="UserId : Int32" kind="Persistent" fieldName="_userId" />
+      <AssociationTargets>
+        <Association Id="cac47fce-cdba-4f2c-943c-e1bbfb27686c" SourceMultiplicity="One" name="AllocatedHasItem">
+          <DomainClassMoniker name="/OimsDbContext/Item" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="a799acec-5ee1-40d4-80ab-2ddb0a0a0299">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Item/Allocateds" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="b8326eef-1bfb-4b94-81bb-ab5c5abd85bb">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Allocated/Item" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="c4708da1-7da0-4d08-8239-9a53a17ec514" SourceMultiplicity="One" name="AllocatedHasRequest">
+          <DomainClassMoniker name="/OimsDbContext/Request" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="0f4a95a8-5f11-43b9-8c58-b02e7c8842ec">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Request/Allocateds" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="a47ba67b-4b9f-4ef9-87b6-c05c65901b07">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Allocated/Request" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="e449653b-9929-4bb3-9b23-c1ff0e373f91" SourceMultiplicity="One" name="AllocatedHasUser">
+          <DomainClassMoniker name="/OimsDbContext/User" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="0e76c7f5-c493-419c-b87d-1e0f15e01252">
+              <NavigationalPropertyMoniker name="/OimsDbContext/User/Allocateds" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="f0c8145c-ca5d-4094-a0ec-6dc8e7f40feb">
+              <NavigationalPropertyMoniker name="/OimsDbContext/Allocated/User" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="3680da44-f7c2-457a-916f-30ef2d0b478c">
+          <NavigationalProperty Id="3699faf1-5256-47e1-ab3e-33a20d2bd101" name="Item" type="Item" label="Item : Item" nullable="true" kind="Persistent" fieldName="_item" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="17a6921e-3b77-4547-8384-2f9edf96d077">
+          <NavigationalProperty Id="cc7683d5-5779-4832-a175-486e66bce508" name="Request" type="Request" label="Request : Request" nullable="true" kind="Persistent" fieldName="_request" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="6cdabf6d-254b-45e5-a72d-494e8f0831f6">
+          <NavigationalProperty Id="96ed138d-5290-4205-8508-0df7ab12da5b" name="User" type="User" label="User : User" nullable="true" kind="Persistent" fieldName="_user" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+  </Types>
+  <domainContext>
+    <domainModelHasDomainContext Id="2d2379ba-7355-404f-af58-4547b4fdb405">
+      <domainContainer name="OimsDbContext" namespace="OimsDataModel" showPropertiesCompartment="true">
+        <entitySetProperty name="Vendors" namespace="OimsDataModel" type="Vendor" label="Vendors : IQueryable&lt;OimsDataModel.Vendor&gt;" />
+        <entitySetProperty name="Users" namespace="OimsDataModel" type="User" label="Users : IQueryable&lt;OimsDataModel.User&gt;" />
+        <entitySetProperty name="Sheltersrequests" namespace="OimsDataModel" type="Sheltersrequest" label="Sheltersrequests : IQueryable&lt;OimsDataModel.Sheltersrequest&gt;" />
+        <entitySetProperty name="Shelters" namespace="OimsDataModel" type="Shelter" label="Shelters : IQueryable&lt;OimsDataModel.Shelter&gt;" />
+        <entitySetProperty name="Shelterdescriptions" namespace="OimsDataModel" type="Shelterdescription" label="Shelterdescriptions : IQueryable&lt;OimsDataModel.Shelterdescription&gt;" />
+        <entitySetProperty name="Roles" namespace="OimsDataModel" type="Role" label="Roles : IQueryable&lt;OimsDataModel.Role&gt;" />
+        <entitySetProperty name="Requeststatus" namespace="OimsDataModel" type="Requeststatus" label="Requeststatus : IQueryable&lt;OimsDataModel.Requeststatus&gt;" />
+        <entitySetProperty name="Requests" namespace="OimsDataModel" type="Request" label="Requests : IQueryable&lt;OimsDataModel.Request&gt;" />
+        <entitySetProperty name="Itemsrequests" namespace="OimsDataModel" type="Itemsrequest" label="Itemsrequests : IQueryable&lt;OimsDataModel.Itemsrequest&gt;" />
+        <entitySetProperty name="Itemslogs" namespace="OimsDataModel" type="Itemslog" label="Itemslogs : IQueryable&lt;OimsDataModel.Itemslog&gt;" />
+        <entitySetProperty name="Items" namespace="OimsDataModel" type="Item" label="Items : IQueryable&lt;OimsDataModel.Item&gt;" />
+        <entitySetProperty name="Companies" namespace="OimsDataModel" type="Company" label="Companies : IQueryable&lt;OimsDataModel.Company&gt;" />
+        <entitySetProperty name="Cartstuffs" namespace="OimsDataModel" type="Cartstuff" label="Cartstuffs : IQueryable&lt;OimsDataModel.Cartstuff&gt;" />
+        <entitySetProperty name="Allocateds" namespace="OimsDataModel" type="Allocated" label="Allocateds : IQueryable&lt;OimsDataModel.Allocated&gt;" />
+      </domainContainer>
+    </domainModelHasDomainContext>
+  </domainContext>
+</DomainModel>

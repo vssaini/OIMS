@@ -1,0 +1,116 @@
+﻿@using System.Web.UI.WebControls
+@using OIMS.Repository.Supervisor
+
+@{
+    var grid = Html.DevExpress().GridView(
+        settings =>
+        {
+            settings.Name = "gvUsers";
+            settings.KeyFieldName = "UserId";
+            settings.CallbackRouteValues = new { Controller = "Supervisor", Action = "GridForUsers" };
+            settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Supervisor", Action = "UpdateGridForUsers" };
+            settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Supervisor", Action = "DeleteGridForUsers" };
+
+            // Styles
+            settings.Theme = Common.GlobalTheme;
+            settings.Width = Unit.Percentage(70);
+            settings.ControlStyle.Paddings.Padding = Unit.Pixel(0);
+            settings.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+            settings.ControlStyle.BorderBottom.BorderWidth = Unit.Pixel(1);
+            settings.Styles.CommandColumn.Spacing = Unit.Pixel(10);
+
+            // Show pager
+            settings.SettingsPager.Visible = true;
+            settings.SettingsPager.PageSize = 15;
+
+            // Show filter row for showing filtered data
+            settings.Settings.ShowFilterRow = true;
+
+            // Enable sorting by columns
+            settings.SettingsBehavior.AllowSort = true;
+
+            // Custom text for empty data row
+            settings.SettingsText.EmptyDataRow = Supervisor.UGridEmptyMsg;
+
+            // Edit and Delete settings
+            settings.SettingsEditing.Mode = GridViewEditingMode.EditForm;
+            settings.SettingsBehavior.ConfirmDelete = true;
+            settings.SettingsEditing.ShowModelErrorsForEditors = true;
+
+            // Configure grid's columns
+            settings.Columns.Add("FirstName").Caption = Supervisor.UGridFirstName;
+            settings.Columns.Add("LastName").Caption = Supervisor.UGridLastName;
+            settings.Columns.Add("Email").Caption = Supervisor.UGridEmail;
+
+            // Password column.
+            // For blank password in editor, see http://msdn.microsoft.com/en-us/library/system.web.mvc.html.inputextensions.password.aspx
+            settings.Columns.Add(column =>
+                                 {
+                                     column.FieldName = "Password";
+                                     column.Caption = Supervisor.UGridPassword;
+
+                                     var tbProp = (TextBoxProperties)column.PropertiesEdit;
+                                     tbProp.Password = true;
+                                 });
+
+
+            // Role Id column
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "RoleId";
+                column.Caption = Supervisor.UGridRole;
+                column.Width = Unit.Percentage(15);
+
+                column.ColumnType = MVCxGridViewColumnType.ComboBox;
+                var cbProp = column.PropertiesEdit as ComboBoxProperties;
+                if (cbProp == null) return;
+
+                cbProp.Items.Add("All", null);
+                foreach (var role in UserRepository.Roles)
+                {
+                    cbProp.Items.Add(role.Role, role.RoleId);
+                }
+
+                cbProp.DropDownStyle = DropDownStyle.DropDownList;
+
+            });
+
+
+            // Show command columns
+            settings.CommandColumn.Caption = Supervisor.GridCommand;
+            settings.CommandColumn.Width = Unit.Percentage(8);
+            settings.CommandColumn.VisibleIndex = settings.Columns.Count;
+            settings.CommandColumn.Visible = true;
+            settings.CommandColumn.ShowEditButton = true;
+            settings.CommandColumn.ShowDeleteButton = true;
+
+            // Command buttons for Edit and Delete
+            settings.SettingsCommandButton.EditButton.ButtonType = GridViewCommandButtonType.Image;
+            settings.SettingsCommandButton.EditButton.Image.Url = "~/Content/Images/Common/GridEdit.png";
+            settings.SettingsCommandButton.DeleteButton.ButtonType = GridViewCommandButtonType.Image;
+            settings.SettingsCommandButton.DeleteButton.Image.Url = "~/Content/Images/Common/GridDelete.png";
+
+            // Command buttons for Update and Cancel
+            settings.SettingsCommandButton.UpdateButton.ButtonType = GridViewCommandButtonType.Image;
+            settings.SettingsCommandButton.UpdateButton.Image.Url = "~/Content/Images/Common/GridUpdate.png";
+            settings.SettingsCommandButton.CancelButton.ButtonType = GridViewCommandButtonType.Image;
+            settings.SettingsCommandButton.CancelButton.Image.Url = "~/Content/Images/Common/GridCancel.png";
+
+            // Show error message in footer row 
+            if (TempData["DeleteErrorMsg"] != null)
+            {
+                settings.Settings.ShowFooter = true;
+                settings.Styles.Footer.CssClass = "dxgvDeletingErrorRow_Aqua";
+                settings.SetFooterRowTemplateContent(c => Html.ViewContext.Writer.Write((string)TempData["ErrorMessage"]));
+            }
+            else
+                settings.Settings.ShowFooter = false;
+        });
+
+    if (TempData["ErrorMessage"] != null)
+    {
+        grid.SetEditErrorText((string)TempData["ErrorMessage"]);
+    }
+}
+
+@grid.Bind(Model).GetHtml()

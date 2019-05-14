@@ -1,0 +1,58 @@
+﻿@{
+    var grid = Html.DevExpress().GridView(
+        settings =>
+        {
+            settings.Name = "gvRequests";
+            settings.KeyFieldName = "RequestId";
+            settings.CallbackRouteValues = new { Controller = "Manager", Action = "GridForRequests" };
+
+            // Styles
+            settings.Theme = Common.GlobalTheme;
+            settings.Width = Unit.Percentage(100);
+            settings.ControlStyle.Paddings.Padding = Unit.Pixel(0);
+            settings.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+            settings.ControlStyle.BorderBottom.BorderWidth = Unit.Pixel(1);
+            settings.Styles.CommandColumn.Spacing = Unit.Pixel(10);
+            settings.Styles.FocusedRow.CssClass = "focusRow";
+
+            // Show pager
+            settings.SettingsPager.Visible = true;
+            settings.SettingsPager.PageSize = 15;
+
+            // Show filter row for showing filtered data
+            settings.Settings.ShowFilterRow = false;
+
+            // Customize settings behaviour
+            settings.SettingsBehavior.AllowSort = true;
+            settings.SettingsBehavior.AllowFocusedRow = true;
+
+            // Custom text for empty data row
+            settings.SettingsText.EmptyDataRow = Requestor.Req_GridEmptyMsg;
+
+            // Configure grid's columns
+            settings.Columns.Add("RequestId").Caption = Requestor.Req_GridId;
+            settings.Columns.Add("Status").Caption = Requestor.Req_GridStatus;
+            settings.Columns.Add("Company").Caption = Requestor.Req_GridCompany;
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "CreatedOn";
+                column.Caption = Requestor.Req_GridDate;
+                column.PropertiesEdit.DisplayFormatString = Requestor.Req_Grid_DateFormat;
+            });
+
+            // ------ EVENTS ------
+
+            // Show details by focused row changed
+            settings.ClientSideEvents.RowClick = "OnGridRowClick";
+
+            // Remove by default selected row
+            settings.PreRender = (sender, e) =>
+            {
+                var g = (ASPxGridView)sender;
+                g.FocusedRowIndex = -1;
+            };
+        });
+    
+}
+
+@grid.Bind(Model).GetHtml()

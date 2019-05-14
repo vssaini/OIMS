@@ -1,0 +1,68 @@
+﻿@model HandleErrorInfo
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@Common.ErrorHeader</title>
+    <link href="~/Content/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Content/Layout.css" rel="stylesheet" />
+    <link href="~/Content/General.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="page">
+        <section id="header">
+            <div id="logobar" class="container">
+                <a href="#">
+                    <img src="~/Content/Images/Logo.png" alt="Error Reporting" width="275" height="60">
+                </a>
+            </div>
+        </section>
+        <div id="content-wrapper">
+            <section id="content" class="container">
+                <div id="content-body" class="row">
+                    <div id="content-center" class="span24 alpha omega">
+                        <div class="page">
+                            <div class="page-body">
+                                <div class="block topic-html-content" id="contentPanel">
+                                    <div class="block-title">
+                                        <h2 class="h2Error">@Common.ErrorHeader</h2>
+                                    </div>
+                                    <div class="block-body">
+                                        @Html.Raw(Common.ErrorContent)
+                                        <p>
+                                            <b>Controller: </b>@Model.ControllerName
+                                        </p>
+                                        <p>
+                                            <b>Action: </b>@Model.ActionName
+                                        </p>
+                                        <p>
+                                            <b>Exception: </b>@Model.Exception.Message
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div id="footer-wrapper">
+            <section id="footer" class="container">
+                <div class="row">
+                    <div class="span8"></div>
+                    <div class="span8">
+                        <div class="row-fluid">
+                            <span style="color: white">@string.Format(Common.FooterCopyright, DateTime.Now.Year)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
+
+

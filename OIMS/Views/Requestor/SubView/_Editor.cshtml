@@ -1,0 +1,19 @@
+﻿@{
+    Html.DevExpress().Button(btnSettings =>
+    {
+        btnSettings.Name = "btnUpdate";
+        btnSettings.ControlStyle.CssClass = "button";
+        btnSettings.Text = "Update";
+        btnSettings.ClientSideEvents.Click = "function(s, e){ gvRequests.UpdateEdit(); }";
+    }).Render();
+}
+;
+
+                    @Html.DevExpress().Button(
+                        btnSettings =>
+                        {
+                            btnSettings.Name = "btnCancel";
+                            btnSettings.ControlStyle.CssClass = "button";
+                            btnSettings.Text = "Cancel";
+                            btnSettings.ClientSideEvents.Click = "function(s, e){ gvRequests.CancelEdit(); }";
+                        })

@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Nr_ButtonCancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Text for cancel button in Popup content for closing job</comment>
+  </data>
+  <data name="Nr_ButtonDefault" xml:space="preserve">
+    <value>Default</value>
+    <comment>Text for default button in Popup content for default job</comment>
+  </data>
+  <data name="Nr_ButtonSave" xml:space="preserve">
+    <value>Save</value>
+    <comment>Text for save button in Popup content for saving job</comment>
+  </data>
+  <data name="Nr_ErrorMsgJobEmpty" xml:space="preserve">
+    <value>Job cannot be blank.</value>
+    <comment>Error message if the job is blank</comment>
+  </data>
+  <data name="Nr_ErrorMsgNoCompany" xml:space="preserve">
+    <value>Company name was not provided.</value>
+    <comment>Error message if user had not selected any company choice</comment>
+  </data>
+  <data name="Nr_ErrorMsgNoJob" xml:space="preserve">
+    <value>Job name was not provided (or selected).</value>
+    <comment>Error message if user had not selected any job choice</comment>
+  </data>
+  <data name="Nr_GridId" xml:space="preserve">
+    <value>S.No.</value>
+    <comment>Caption for grid column</comment>
+  </data>
+  <data name="Nr_GridItemName" xml:space="preserve">
+    <value>Item Name</value>
+    <comment>Caption for grid column</comment>
+  </data>
+  <data name="Nr_GridMarking" xml:space="preserve">
+    <value>Marking</value>
+    <comment>Caption for grid column</comment>
+  </data>
+  <data name="Nr_GridQtyPerShelter" xml:space="preserve">
+    <value>Quantity/Shelter</value>
+    <comment>Caption for grid column</comment>
+  </data>
+  <data name="Nr_GridQuantity" xml:space="preserve">
+    <value>Enter Quantity</value>
+    <comment>Caption for grid column</comment>
+  </data>
+  <data name="Nr_GridSize" xml:space="preserve">
+    <value>Size</value>
+    <comment>Caption for grid column</comment>
+  </data>
+  <data name="Nr_Header" xml:space="preserve">
+    <value>New Request</value>
+    <comment>Header for page</comment>
+  </data>
+  <data name="Nr_Items" xml:space="preserve">
+    <value>Items</value>
+    <comment>Text for span</comment>
+  </data>
+  <data name="Nr_JobNotice" xml:space="preserve">
+    <value>Job named &lt;b&gt;{0}&lt;/b&gt; will be associated to all new requests.</value>
+    <comment>Show confirmation message to user for saving job</comment>
+  </data>
+  <data name="Nr_Legend" xml:space="preserve">
+    <value>Place your request(s)</value>
+    <comment>Text for legend</comment>
+  </data>
+  <data name="Nr_Loader" xml:space="preserve">
+    <value>Please wait! Adding to cart..</value>
+    <comment>Text for loader</comment>
+  </data>
+  <data name="Nr_PopLoader" xml:space="preserve">
+    <value>Please wait...</value>
+    <comment>Text for loader in Popup</comment>
+  </data>
+  <data name="Nr_PopupHeader" xml:space="preserve">
+    <value>Set job and company for requests</value>
+    <comment>Header text for popup</comment>
+  </data>
+  <data name="Nr_RadioFirst" xml:space="preserve">
+    <value>Create a new job</value>
+    <comment>The first radio option in Popup content</comment>
+  </data>
+  <data name="Nr_RadioSecond" xml:space="preserve">
+    <value>Use an existing job</value>
+    <comment>The second radio option in Popup content</comment>
+  </data>
+  <data name="Nr_SelectItem" xml:space="preserve">
+    <value>Select item:</value>
+    <comment>Text for span</comment>
+  </data>
+  <data name="Nr_SelectShelter" xml:space="preserve">
+    <value>Select shelter:</value>
+    <comment>Text for span</comment>
+  </data>
+  <data name="Nr_Shelters" xml:space="preserve">
+    <value>Shelters</value>
+    <comment>Text for span</comment>
+  </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>OIMS - Requestor zone</value>
+    <comment>Title for page</comment>
+  </data>
+  <data name="Req_Cart_ErrorNoItem" xml:space="preserve">
+    <value>There is no item for adding to cart.</value>
+    <comment>Error message if no item is available for adding to cart</comment>
+  </data>
+  <data name="Req_Cart_ErrorNoShelter" xml:space="preserve">
+    <value>There is no shelter for adding to cart.</value>
+    <comment>Error message if no shelter is available for adding to cart</comment>
+  </data>
+  <data name="Req_Cart_ItemAdded" xml:space="preserve">
+    <value>Item added to cart successfully.</value>
+    <comment>Text message for item added to cart</comment>
+  </data>
+  <data name="Req_Cart_MaterialDelete" xml:space="preserve">
+    <value>Cart item deleted successfully.</value>
+    <comment>Text message if shelters or items deleted successfully</comment>
+  </data>
+  <data name="Req_Cart_MaterialSaved" xml:space="preserve">
+    <value>The request was sent successfully! You can check same from 'Requests' tab.</value>
+    <comment>Text message if shelters(or items) were got added successfully</comment>
+  </data>
+  <data name="Req_Cart_ShelterAdded" xml:space="preserve">
+    <value>Shelter added to cart successfully.</value>
+    <comment>Text message for shelter added to cart</comment>
+  </data>
+  <data name="Req_Date" xml:space="preserve">
+    <value>Request Date:</value>
+    <comment>Text for date in details</comment>
+  </data>
+  <data name="Req_DateNA" xml:space="preserve">
+    <value>Not available</value>
+    <comment>Text for no date</comment>
+  </data>
+  <data name="Req_Detail_Recommend" xml:space="preserve">
+    <value>Recommended:</value>
+    <comment>Text for grid detail recommended</comment>
+  </data>
+  <data name="Req_Detail_Request" xml:space="preserve">
+    <value>Requested:</value>
+    <comment>Text for grid detail requested</comment>
+  </data>
+  <data name="Req_GridCompany" xml:space="preserve">
+    <value>Company</value>
+    <comment>Caption for grid column</comment>
+  </data>
+  <data name="Req_GridDate" xml:space="preserve">
+    <value>On Date</value>
+    <comment>Caption for grid column</comment>
+  </data>
+  <data name="Req_GridEmptyMsg" xml:space="preserve">
+    <value>No request(s) found.</value>
+    <comment>Empty row message for grid</comment>
+  </data>
+  <data name="Req_GridId" xml:space="preserve">
+    <value> Id</value>
+    <comment>Caption for grid column</comment>
+  </data>
+  <data name="Req_GridJob" xml:space="preserve">
+    <value>Attach to Job</value>
+    <comment>Caption for grid column</comment>
+  </data>
+  <data name="Req_GridStatus" xml:space="preserve">
+    <value>Status</value>
+    <comment>Caption for grid column</comment>
+  </data>
+  <data name="Req_Grid_DateFormat" xml:space="preserve">
+    <value>d</value>
+    <comment>The date format to show date as dd-</comment>
+  </data>
+  <data name="Req_Id" xml:space="preserve">
+    <value>Request Id:</value>
+    <comment>Text for request id</comment>
+  </data>
+  <data name="Req_Info" xml:space="preserve">
+    <value>Click respective request for more details.</value>
+    <comment>Text for notice for Requests</comment>
+  </data>
+  <data name="Req_NameNA" xml:space="preserve">
+    <value>Not updated yet</value>
+    <comment>Text for not updated</comment>
+  </data>
+  <data name="Req_RequestedBy" xml:space="preserve">
+    <value>Requested By:</value>
+    <comment>Text for requestor</comment>
+  </data>
+  <data name="Req_SelectCompanyOption" xml:space="preserve">
+    <value>-- Select Company --</value>
+    <comment>Text for first item</comment>
+  </data>
+  <data name="Req_SelectJobOption" xml:space="preserve">
+    <value>-- Select Job --</value>
+    <comment>Text for first item</comment>
+  </data>
+  <data name="Req_Status" xml:space="preserve">
+    <value>Request Status:</value>
+    <comment>Text for status in details</comment>
+  </data>
+  <data name="Req_UpdateBy" xml:space="preserve">
+    <value>Last Updated By:</value>
+    <comment>Text for updator</comment>
+  </data>
+  <data name="Req_UpdateDate" xml:space="preserve">
+    <value>Last Update Date:</value>
+    <comment>Text for updated date</comment>
+  </data>
+  <data name="Sb_Btn_Remove" xml:space="preserve">
+    <value>Remove</value>
+    <comment>Text for remove button for deleting item or shelter</comment>
+  </data>
+  <data name="Sb_Btn_Submit" xml:space="preserve">
+    <value>Send</value>
+    <comment>Text for submit button for saving list</comment>
+  </data>
+  <data name="Sb_NoShelter" xml:space="preserve">
+    <value>Your cart is empty.</value>
+    <comment>Text for span for no item</comment>
+  </data>
+  <data name="Sb_ReqList" xml:space="preserve">
+    <value>Request List</value>
+    <comment>Text for span</comment>
+  </data>
+  <data name="Sb_TotalCount" xml:space="preserve">
+    <value>Total Count:</value>
+    <comment>Text for span</comment>
+  </data>
+  <data name="TabNewRequest" xml:space="preserve">
+    <value>New Request</value>
+    <comment>Text for New Request tab</comment>
+  </data>
+  <data name="TabRequests" xml:space="preserve">
+    <value>Requests</value>
+    <comment>Text for Requests tab</comment>
+  </data>
+</root>

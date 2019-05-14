@@ -1,0 +1,56 @@
+﻿@using System.Drawing
+@model OIMS.Models.Requestor.JobModel
+
+<div id="PopupContainer">
+    <div id="PopupContent">
+        @Html.Partial("_Result")
+    </div>
+    <div class="clear"></div>
+    <div>
+        @Html.DropDownListFor(m => m.Company, Model.Companies, new { @class = "stsWid" })
+    </div>
+    <label class="valign inline">
+        <input type="radio" data-id="newJob" name="job" checked="checked" style="float: left; clear: none;" />&nbsp;<span>@Requestor.Nr_RadioFirst</span>
+    </label>
+    <label class="valign inline">
+        <input type="radio" data-id="oldJob" name="job" style="float: left; clear: none;" />&nbsp;<span>@Requestor.Nr_RadioSecond</span>
+    </label>
+
+    <div class="padTop10">
+        <input type="text" id="txtJob" name="txtJob" required="required" placeholder="Enter name of the job" autofocus="autofocus" />
+        <div id="oldJob" style="display: none;">
+            @Html.DropDownListFor(m => m.Job, Model.Jobs, new { @class = "stsWid" })
+        </div>
+        <div class="clear"></div>
+
+        <div class="pull-right margLeft10">
+            <button
+                id="btnCancel" class="btn btn-small btn-danger margTop10">
+                @Requestor.Nr_ButtonCancel</button>
+        </div>
+        <div class="pull-right margLeft10">
+            <button
+                id="btnDefault" class="btn btn-small btn-info margTop10">
+                @Requestor.Nr_ButtonDefault</button>
+        </div>
+        <div class="pull-right">
+            <button
+                id="btnSaveJob" class="btn btn-small btn-info margTop10">
+                @Requestor.Nr_ButtonSave</button>
+        </div>
+    </div>
+</div>
+
+@Html.DevExpress().LoadingPanel(
+        settings =>
+        {
+            settings.Name = "PopLoader";
+            settings.Modal = true; // Display gray background as modal
+            settings.ContainerElementID = "PopupContainer";
+
+            // Layout
+            settings.ControlStyle.BackColor = Color.White;
+            settings.Text = Requestor.Nr_PopLoader;
+            settings.Images.LoadingPanel.Url = "~/Content/Images/Loader-Blue.gif";
+            settings.ShowImage = true;
+        }).GetHtml()

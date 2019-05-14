@@ -1,0 +1,146 @@
+﻿@using System.Drawing
+@using OIMS.Repository.Supervisor
+
+@{
+    var grid = Html.DevExpress().GridView(
+        settings =>
+        {
+            settings.Name = "gvShelterItems_" + ViewData["ShelterId"];
+            settings.SettingsDetail.MasterGridName = "gvShelters";
+            settings.KeyFieldName = "ShelterDescKey";
+
+            settings.CallbackRouteValues = new { Controller = "Supervisor", Action = "GridForShelterItems", ShelterId = ViewData["ShelterId"] };
+
+            // New,Update and Delete
+            settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Supervisor", Action = "NewGridForShelterItems", ShelterId = ViewData["ShelterId"] };
+            settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Supervisor", Action = "UpdateGridForShelterItems", ShelterId = ViewData["ShelterId"] };
+            settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Supervisor", Action = "DeleteGridForShelterItems", ShelterId = ViewData["ShelterId"] };
+
+            // Styles
+            settings.Theme = Common.SubTheme;
+            settings.Width = Unit.Percentage(100);
+            settings.Styles.CommandColumn.Spacing = Unit.Pixel(10);
+
+            // Show pager
+            settings.SettingsPager.Visible = true;
+            settings.SettingsPager.PageSize = 5;
+
+            // Show filter row for showing filtered data
+            settings.Settings.ShowFilterRow = false;
+
+            // Enable sorting by columns
+            settings.SettingsBehavior.AllowSort = true;
+
+            // Custom text for empty data row
+            settings.SettingsText.EmptyDataRow = Supervisor.SGridItemEmptyMsg;
+
+            // Edit and Delete settings
+            settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+            settings.SettingsBehavior.ConfirmDelete = true;
+            settings.SettingsEditing.ShowModelErrorsForEditors = true;
+
+            // Columns
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "ItemId";
+                column.Caption = Supervisor.SGridItemName;
+
+                column.ColumnType = MVCxGridViewColumnType.ComboBox;
+                var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+                if (comboBoxProperties == null) return;
+
+                comboBoxProperties.DataSource = ItemRepository.Items;
+                comboBoxProperties.TextField = "ItemName";
+                comboBoxProperties.ValueField = "ItemId";
+                comboBoxProperties.ValueType = typeof(int);
+            });
+
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "Size";
+                column.Caption = Requestor.Nr_GridSize;
+                column.ReadOnly = true;
+            });
+
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "Marking";
+                column.Caption = Requestor.Nr_GridMarking;
+                column.ReadOnly = true;
+            });
+
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "ItemQuantity";
+                column.Caption = Supervisor.SGridItemsQtyPerShelter;
+
+                column.ColumnType = MVCxGridViewColumnType.SpinEdit;
+                var spinEditProperties = column.PropertiesEdit as SpinEditProperties;
+
+                if (spinEditProperties == null) return;
+                spinEditProperties.MinValue = 1;
+                spinEditProperties.MaxValue = Int32.MaxValue;
+                spinEditProperties.NumberType = SpinEditNumberType.Integer;
+            });
+
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "InStock";
+                column.Caption = Supervisor.SGridItemStock;
+                column.ReadOnly = true;
+            });
+
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "Vendor";
+                column.Caption = Supervisor.SGridVendor;
+                column.ReadOnly = true;
+            });
+
+            // Show command columns
+            settings.CommandColumn.Caption = Supervisor.GridCommand;
+            settings.CommandColumn.Width = Unit.Percentage(7);
+            settings.CommandColumn.Visible = true;
+            settings.CommandColumn.ShowEditButton = true;
+            settings.CommandColumn.ShowDeleteButton = true;
+
+            // Show 'New' command in header
+            settings.CommandColumn.SetHeaderTemplateContent(c => Html.DevExpress().HyperLink(hyperLinkSettings =>
+            {
+                hyperLinkSettings.Name = "link_" + settings.Name;
+                hyperLinkSettings.Properties.Text = Supervisor.SGridItemNewLink;
+                hyperLinkSettings.NavigateUrl = "javascript:void(0);";
+                hyperLinkSettings.Properties.ClientSideEvents.Click = string.Format(@"
+        function(s, e)
+        {{
+            {0}.AddNewRow();
+        }}
+        ", settings.Name);
+            }).Render());
+
+            // Row formatting based on condition
+            settings.HtmlRowPrepared = (s, e) =>
+                                       {
+                                           if (e.RowType != GridViewRowType.Data) return;
+                                           var stock = Convert.ToInt32(e.GetValue("InStock"));
+                                           var itemQty = Convert.ToInt32(e.GetValue("ItemQuantity"));
+                                           if (stock < itemQty)
+                                               e.Row.ForeColor = Color.Red;
+
+                                       };
+
+
+            // Show error message for delete part
+            if (TempData["DeleteErrorMsg"] == null) return;
+            settings.Settings.ShowFooter = true;
+            settings.Styles.Footer.CssClass = "dxgvDeletingErrorRow_Aqua";
+            settings.SetFooterRowTemplateContent(c => Html.ViewContext.Writer.Write(TempData["DeleteErrorMsg"]));
+        });
+
+    if (TempData["ErrorMessage"] != null)
+    {
+        grid.SetEditErrorText((string)TempData["ErrorMessage"]);
+    }
+}
+
+@grid.Bind(Model.ShelterItems).GetHtml()

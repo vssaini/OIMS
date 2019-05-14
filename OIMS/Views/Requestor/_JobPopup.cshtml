@@ -1,0 +1,33 @@
+﻿@Html.DevExpress().PopupControl(
+    settings =>
+    {
+        settings.Name = "jobPopup";
+
+        // Layout
+        settings.Style.Clear();
+        settings.Width = 300;
+        settings.Height = 200;
+        settings.Theme = Common.GlobalTheme;
+        settings.PopupAnimationType = AnimationType.Fade;
+        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.PopupVerticalOffset = 350; // Correction for making popup to appear in center
+        
+
+        // Customization
+        settings.HeaderText = Requestor.Nr_PopupHeader;
+        settings.ShowShadow = true;
+        
+        // Behaviour
+        settings.Modal = true;
+        settings.ShowCloseButton = false;
+        settings.CloseAction = CloseAction.None;
+        
+        // Events
+        settings.EnableClientSideAPI = true;
+        settings.CallbackRouteValues = new { Controller = "Requestor", Action = "LoadJobContent" };
+        settings.LoadContentViaCallback = LoadContentViaCallback.OnFirstShow;
+        settings.ClientSideEvents.EndCallback = "PopupEndCallback";
+        
+        // Content
+        settings.SetContent(() => Html.RenderPartial("SubView/_JobContent"));
+    }).GetHtml()

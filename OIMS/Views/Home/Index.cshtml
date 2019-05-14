@@ -1,0 +1,78 @@
+﻿@model OIMS.Models.LoginModel
+@using DevTrends.MvcDonutCaching
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link href="~/Content/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Content/General.css" rel="stylesheet" />
+    <link href="~/Content/jquery.toastmessage-min.css" rel="stylesheet" />
+    <title>@Common.PageTitle</title>
+    @Scripts.Render("~/bundles/jqueryMix")
+</head>
+
+<body>
+    @using (Html.BeginForm("Authenticate", "Home", FormMethod.Post, new { id = "frmLogin" }))
+    {
+        <div id="userContent" align="center">
+            @Html.Action("Result", "Home", true)
+        </div>
+        
+        <div class="login-outer" id="logonUserChooserContainer">
+            <div class="user-block" id="manager">
+                <img src="~/Content/Images/Manager/User.png" alt="Manager image" />
+                <h2>@Home.ManagerRole</h2>
+            </div>
+
+            <div class="user-block" id="supervisor">
+                <img src="~/Content/Images/Supervisor/User.png" alt="Supervisor image" />
+                <h2>@Home.SupervisorRole</h2>
+            </div>
+
+            <div class="user-block" id="requestor">
+                <img src="~/Content/Images/Requestor/User.png" alt="Requestor image" />
+                <h2>@Home.RequestorRole</h2>
+            </div>
+        </div>
+
+        <div class="user-outer" id="user_manager">
+            <div class="user-block marg-l">
+                <img src="~/Content/Images/Manager/User.png" alt="Manager image" />
+                <h2><span>@Home.ManagerRole</span> </h2>
+            </div>
+            @Html.TextBoxFor(m => m.ManagerEmail, new { @class = "userinput", @placeholder = "Enter Username", @autofocus = "autofocus" })
+            @Html.PasswordFor(m => m.ManagerPass, new { @class = "userinput", @placeholder = "Enter Password" })
+
+            <button type="submit" name="command" value="@Home.ManagerRole" class="btn btn-info marg-btton">@Home.ButtonEnter</button>
+            <a class="switchUserLink" href="#">@Home.SwitchUser</a>
+        </div>
+
+        <div class="user-outer" id="user_supervisor">
+            <div class="user-block marg-l">
+                <img src="~/Content/Images/Supervisor/User.png" alt="Supervisor image" />
+                <h2><span>@Home.SupervisorRole</span></h2>
+            </div>
+            @Html.TextBoxFor(m => m.SupervisorEmail, new { @class = "userinput", @placeholder = "Enter Username", @autofocus = "autofocus" })
+            @Html.PasswordFor(m => m.SupervisorPass, new { @class = "userinput", @placeholder = "Enter Password" })
+            <button type="submit" name="command" value="@Home.SupervisorRole" class="btn btn-info marg-btton">@Home.ButtonEnter</button>
+            <a class="switchUserLink" href="#">@Home.SwitchUser</a>
+        </div>
+
+        <div class="user-outer" id="user_requestor">
+            <div class="user-block marg-l">
+                <img src="~/Content/Images/Requestor/User.png" alt="Requestor image" />
+                <h2><span>@Home.RequestorRole</span></h2>
+            </div>
+            @Html.TextBoxFor(m => m.RequestorEmail, new { @class = "userinput", @placeholder = "Enter Username", @autofocus = "autofocus" })
+            @Html.PasswordFor(m => m.RequestorPass, new { @class = "userinput", @placeholder = "Enter Password" })
+
+            <button type="submit" name="command" value="@Home.RequestorRole" class="btn btn-info marg-btton">@Home.ButtonEnter</button>
+            <a class="switchUserLink" href="#">@Home.SwitchUser</a>
+        </div>
+        
+    }
+    @Scripts.Render("~/bundles/oims-login")
+</body>
+</html>

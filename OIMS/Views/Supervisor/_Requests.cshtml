@@ -1,0 +1,84 @@
+﻿@using OIMS.Repository.Supervisor
+<h2 class="h2Requests">@Supervisor.TabRequests</h2>
+
+@using (Html.BeginForm("Requests", "Supervisor", FormMethod.Get, new { name = "form-Requests", id = "form-Requests" }))
+{
+    <script type="text/javascript">
+        //<![CDATA[
+
+        var userValue;
+
+        function OnGridRowClick(s, e)
+        {
+            var rowIndex = e.visibleIndex;
+            s.GetRowValues(rowIndex, 'RequestId;Status;RequestorId', OnGetRowValues);
+        }
+
+        function OnGetRowValues(colValues)
+        {
+           ShowDetails(colValues[0], colValues[1], colValues[2]);
+        }
+
+        function OnSpinEditKeyUp(s, e)
+        {
+            var stackTopright = { "dir1": "down", "dir2": "left", "firstpos1": 60, "firstpos2": 115 };
+
+            userValue = parseFloat(s.GetText());
+            var maxValue = s.GetMaxValue();
+
+            if (userValue > maxValue)
+            {
+                var msg = 'You entered value ' + userValue + '. Value should be less than or equal to In Stock value ' + maxValue + '.\n\n If you try to update it, the In Stock value will be recommended automatically.';
+
+                $.pnotify({
+                    text: msg,
+                    type: "warning",
+                    animate_speed: 'fast',
+                    closer_hover: false,
+                    hide: true,
+                    stack: stackTopright,
+                });
+            }
+        }
+
+        function OnSpinEditValidation(s, e)
+        {
+            var maxValue = s.GetMaxValue();
+
+            if (userValue > maxValue)
+            {
+                e.isValid = false;
+                userValue = 0;
+            }
+        }
+        // ]]>
+    </script>
+    
+    <div id="filterBox" class="padTop10">
+        <span class="padRight10 valign-bot">Show requests:</span>
+        <select id="selectFilters" class="stsWid">
+            <option value="Relevant">Relevant only</option>
+            <option value="All">All</option>
+        </select>
+        <button type="submit" id="btnGo" name="btnGridFilter" class="btn">
+            <i class="icon-play-circle"></i>&nbsp;@Supervisor.RBtnGo
+        </button>
+    </div>
+
+    <div style="width: 100%">
+        <div class="divLeft">
+            <div class="alert alert-success margTop10">
+                <span class="padRight10">
+                    <i class="info"></i></span>@Supervisor.RInfo
+            </div>
+            @Html.Partial("Grid/_GridForRequests", RequestsRepository.Requests)
+        </div>
+
+        <div id="reqSummary" class="divRight margTop10" data-href="@Url.Action("RequestDetails", "Supervisor")">
+            @*@Html.Partial("_RequestDetails")*@
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/oims-s-req")
+}
+

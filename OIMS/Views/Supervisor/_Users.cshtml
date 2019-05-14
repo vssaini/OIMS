@@ -1,0 +1,108 @@
+﻿@using OIMS.Repository.Supervisor
+@model OIMS.Models.Supervisor.UsersModel
+
+@{
+    var ajaxOptions = new AjaxOptions
+                          {
+                              UpdateTargetId = "userContent",
+                              OnBegin = "UserBegin",
+                              OnSuccess = "UserSuccess",
+                              OnFailure = "UserFailure"
+                          };
+}
+
+@using (Ajax.BeginForm("UserPost", "Supervisor", null, ajaxOptions, new { id = "frmUser" }))
+{
+    <button id="btnShowNewUserDiv" class="btn pull-right">
+        <i class="icon-user"></i>&nbsp;<span id="newUserSpan">@Supervisor.UBtnNewUser</span>
+    </button>
+    
+    <div id="NewUserDiv" style="display: none;">
+        <h2 class="h2NewUser">@Supervisor.Uh2</h2>
+
+        <div id="userContent">
+            @Html.Partial("_Result")
+        </div>
+
+        <fieldset>
+            <legend>@Supervisor.ULegdPersonal</legend>
+
+            <div class="control-group">
+                <label class="control-label required">@Supervisor.UGridFirstName</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.FirstName, new { required = "required", autofocus = "autofocus" })
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label required">@Supervisor.UGridLastName</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.LastName, new { required = "required" })
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>@Supervisor.ULegdLogin</legend>
+
+            <div class="control-group">
+                <label class="control-label required">@Supervisor.UGridEmail</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Email, new { type = "email", required = "required" })
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label required">@Supervisor.UGridPassword</label>
+                <div class="controls">
+                    @Html.PasswordFor(m => m.Password, new { required = "required" })
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label required">@Supervisor.ULblConfirmPass</label>
+                <div class="controls">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { required = "required" })
+                    <div id="pass-info"></div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label required">@Supervisor.UGridRole</label>
+                <div class="controls">
+                    @Html.DropDownListFor(m => m.RoleId, Model.Roles, new { @class = "roleWid" })
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="control-group buttons">
+            <div class="controls">
+                <button type="submit" id="btnSave" class="btn btn-primary">
+                    <i class="icon-ok icon-white"></i>
+                    @Supervisor.UBtnSave
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="gridContent">
+        <h2 class="h2Users">@Supervisor.TabUsers</h2>
+            @Html.Partial("Grid/_GridForUsers", UserRepository.Users)
+    </div>
+}
+
+@Html.DevExpress().LoadingPanel(
+        settings =>
+        {
+            settings.Name = "UserLoader";
+            settings.Modal = true;
+            settings.ContainerElementID = "NewUserDiv";
+
+            // Layout
+            settings.Theme = "ClinicalStudyTheme"; // Comment this to bring gray background
+            settings.Text = Supervisor.ULoader;
+
+        }
+    ).GetHtml()
+
+@Scripts.Render("~/bundles/oims-s-users")

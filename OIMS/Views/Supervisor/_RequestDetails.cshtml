@@ -1,0 +1,74 @@
+﻿@*----- Supervisor Request Details -----*@
+@model OIMS.Models.Supervisor.RequestDetailModel
+
+@if (Model != null)
+{
+    <div class="item-box divBoxWidth">
+        <div class="headerBar">
+            <span>@Requestor.Req_Id @Model.RequestId</span>
+        </div>
+        <div id="itemBox" class="data">
+            <div class="msgDiv">
+                @if (Model.RequestorName != null)
+                {
+                    <p><span class="padRight10">@Requestor.Req_RequestedBy</span>@Model.RequestorName</p>
+                }
+@*<p><span class="padRight10 valign-bot">@Requestor.Req_Status</span>@Html.DropDownListFor(m => m.StatusId, Model.Statuses, new { @class = "stsWid" })</p>*@
+
+                <p><span class="padRight10 valign-bot">@Requestor.Req_Status</span>
+                    @Html.DropDownList("StatusId", Model.Statuses, new { @class = "stsWid" })
+                </p>
+
+                <input type="hidden" id="statusIdSupv" name="statusIdSupv" value="@Model.DbStatusId" />
+                <p><span class="padRight10">@Requestor.Req_Date</span>@string.Format("{0:dd-MMM-yyyy}", Model.RequestDate)</p>
+                <p>
+                    <span class="padRight10">@Requestor.Req_UpdateBy</span>
+
+                    @if (Model.UpdatorName != null)
+                    {
+                        @Model.UpdatorName
+                    }
+                    else
+                    {
+                        @:@Requestor.Req_NameNA
+                                                                                }
+                </p>
+                <p>
+                    <span class="padRight10">@Requestor.Req_UpdateDate</span>
+
+                    @if (Model.UpdateDate != null)
+                    {
+                        @: @string.Format("{0:dd-MMM-yyyy}", Model.UpdateDate)
+                    }
+                    else
+                    {
+                        @: @Requestor.Req_DateNA
+                    }
+                </p>
+                <hr />
+
+                @if (Model.Shelters.Any())
+                {
+                    ViewData["PaProduct"] = Model.DbStatusId.Equals(5) ? "true" : null;
+                       
+                    <p class="msgHead">@Html.LabelFor(m => m.Shelters, new { @class = "inline" }):</p>
+                    @Html.Partial("Grid/_ReqShelterGrid", Model.Shelters)
+                }
+
+                @if (Model.Items.Any())
+                {
+                    ViewData["PaItem"] = Model.DbStatusId.Equals(5) ? "true" : null;
+                    <p class="msgHead margTop10">@Html.LabelFor(m => m.Items, new { @class = "inline" }):</p>
+                    @Html.Partial("Grid/_ReqItemGrid", Model.Items)
+                }
+
+                <button id="btnSaveStatus" class="btn btn-warning btn-small pull-right margTop10" data-href="@Url.Action("RequestDetails", "Supervisor")" disabled="disabled">
+                    <span>@Supervisor.RBtnSave</span>&nbsp;
+                    <i class="icon-save"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+}
+

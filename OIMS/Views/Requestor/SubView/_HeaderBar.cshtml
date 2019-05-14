@@ -1,0 +1,29 @@
+﻿@using OIMS.Global
+@model OIMS.Models.Requestor.CartModel
+
+<!-- ACCOUNT -->
+<div id="shopbar-account" class="shopbar-tool pull-right">
+    <a href="@Url.Action("LogOut", "Home")" class="shopbar-button clearfix" data-type="logout">
+        <figure class="shopbar-button-icon pull-left"><i class="sm-icon-user-5"></i></figure>
+        <span class="shopbar-button-label pull-left">
+            <span>Welcome @Convert.ToString(Application.LoggedRequestor)!</span>
+            <br>
+            <span style="font-weight: bold">@Common.LogOut</span>
+        </span><span class="sm-arrow"></span></a>
+</div>
+<div class="shopbar-divider"></div>
+<!-- CART -->
+<div id="shopbar-cart" class="shopbar-tool pull-right">
+    <a id="lnkSummary" data-summary-href="@Url.Action("TotalShelter", "Requestor")" href="#" data-target="shopbar-flyout-cart" class="shopbar-button clearfix">
+        <figure class="shopbar-button-icon pull-left">
+            <i class="sm-icon-x" data-icon="8"></i>
+            <span data-bind-to="TotalProducts" class="label label-info @(Model.TotalProducts > 0 ? "" : "hide")">@Model.TotalProducts</span>
+        </figure>
+        <span class="shopbar-button-label pull-left"><span>@Requestor.Sb_TotalCount</span> <span data-bind-to="TotalProducts">@Model.TotalProducts</span><br>
+            <span style="font-weight: bold">@Requestor.Sb_ReqList <i class="icon-caret-down"></i></span></span><span class="sm-arrow"></span>
+    </a>
+    <div class="shopbar-flyout" id="shopbar-flyout-cart" data-href='@Url.Action("FlyoutCart", "Requestor")'>
+        @*@Html.Action("FlyoutCart", "Requestor")*@
+    </div>
+
+</div>

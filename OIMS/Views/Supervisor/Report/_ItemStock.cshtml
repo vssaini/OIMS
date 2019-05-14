@@ -1,0 +1,12 @@
+﻿@using OIMS.Reports
+
+@Html.DevExpress().ReportViewer(settings =>
+{
+    settings.Name = "reportViewerItemStock";
+    settings.Report = (ItemsStock)ViewData["Report"];
+    settings.Theme = Common.ReportTheme;
+
+    settings.CallbackRouteValues = new { Controller = "Supervisor", Action = "ItemStockReport" };
+    settings.ExportRouteValues = new { Controller = "Supervisor", Action = "ItemStockExport" };
+}).GetHtml()
+

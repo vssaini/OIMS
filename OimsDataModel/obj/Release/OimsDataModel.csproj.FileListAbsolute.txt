@@ -1,0 +1,7 @@
+D:\MVC\OIMS\OimsDataModel\bin\Release\OimsDataModel.dll.config
+D:\MVC\OIMS\OimsDataModel\bin\Release\OimsDataModel.dll
+D:\MVC\OIMS\OimsDataModel\bin\Release\OimsDataModel.pdb
+D:\MVC\OIMS\OimsDataModel\bin\Release\Telerik.OpenAccess.35.Extensions.dll
+D:\MVC\OIMS\OimsDataModel\obj\Release\OimsDataModel.dll
+D:\MVC\OIMS\OimsDataModel\obj\Release\OimsDataModel.pdb
+D:\MVC\OIMS\OimsDataModel\obj\Release\OimsDataModel.csprojResolveAssemblyReference.cache

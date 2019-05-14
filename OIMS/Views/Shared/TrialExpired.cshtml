@@ -1,0 +1,75 @@
+﻿@using OIMS.Global
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>@Common.TrialExpired</title>
+    <link href="~/Content/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    @Styles.Render("~/Content/gen-css")
+</head>
+<body>
+    <!--header-->
+    <section id="header">
+        <div class="clearfix container" id="shopbar">
+            <div class="container">
+            </div>
+        </div>
+        <div class="container" id="logobar">
+            <span class="brand">
+                <img title="@Common.PageTitle" alt="@Common.PageTitle" src="@Application.LogoUrl" />
+            </span>
+        </div>
+    </section>
+    <!--header end-->
+    <!--menu-->
+    <div class="container">
+        <div class="navbar" id="megamenu">
+            <div class="navbar-inner" style="overflow: visible;">
+                <div class="container">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--menu ends-->
+    <!--content start-->
+    <div id="content-wrapper">
+        <section class="container" id="content">
+            <div class="row" id="content-body">
+                <div id="content-center" class="span24 alpha omega">
+                    <div class="page">
+                        <div class="page-body">
+                            <div class="block topic-html-content" id="contentPanel">
+                                <div class="block-title">
+                                    <h2 class="h2Error">Trial mode expired</h2>
+                                </div>
+                                <img src="~/Content/Images/PayMoney.png" />
+                                <p>We are sorry for inconvenience.</p>
+                                <p>It passed 30 days begining from 25<sup>th</sup> October, 2014. <b><i>No payment had been done for website's revised work.</i></b> </p>
+                                <p>Website will not work until you don't obtain valid license file from Developer to keep enjoying OIMS.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!--content ends-->
+    <!--footerstart-->
+    <div id="footer-wrapper">
+        <div class="footer-disclaimer container clearfix">
+            <div class="pull-right copySize">@Html.Raw(string.Format(Common.FooterCopyright, DateTime.Now.Year))</div>
+        </div>
+    </div>
+    <!--footerends-->
+</body>
+</html>
+
+
+
+

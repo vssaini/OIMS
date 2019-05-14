@@ -1,0 +1,143 @@
+﻿@using DevExpress.Utils
+@using OIMS.Models.Supervisor
+
+@{
+    var totalStock = 0m;
+    var grid = Html.DevExpress().GridView(
+        settings =>
+        {
+            settings.Name = "gvReqShelters";
+            settings.KeyFieldName = "Id";
+            settings.CallbackRouteValues = new { Controller = "Supervisor", Action = "GridForReqShelters", Status = ViewData["Status"] };
+
+            settings.SettingsEditing.BatchUpdateRouteValues = new { Controller = "Supervisor", Action = "BatchUpdateForReqShelters", Status = ViewData["Status"] };
+
+            // Styles
+            settings.Theme = Common.SubTheme;
+            settings.Width = Unit.Percentage(100);
+            settings.Styles.CommandColumn.Spacing = Unit.Pixel(8);
+            settings.SettingsLoadingPanel.Text = Supervisor.RProdGridLoad;
+
+            // Show pager
+            settings.SettingsPager.Visible = true;
+            settings.SettingsPager.PageSize = 5;
+
+            // Enable sorting by columns
+            settings.SettingsBehavior.AllowSort = false;
+
+            // Edit and Delete settings
+            if (ViewData["Status"] != null)
+            {
+                settings.SettingsEditing.Mode = GridViewEditingMode.Batch;
+            }
+            settings.SettingsEditing.ShowModelErrorsForEditors = true;
+
+            // Configure grid's columns
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "Name";
+                column.Width = Unit.Percentage(65);
+                column.EditFormSettings.Visible = DefaultBoolean.False;
+            });
+
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "TotalStock";
+                column.Caption = Supervisor.RGridStock;
+                column.Width = Unit.Percentage(5);
+                column.EditFormSettings.Visible = DefaultBoolean.False;
+            });
+
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "CountReq";
+                column.Caption = Supervisor.RGridCount;
+                column.Width = Unit.Percentage(5);
+                column.EditFormSettings.Visible = DefaultBoolean.False;
+            });
+
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "ProdPending";
+                column.Caption = Supervisor.RGridPending;
+                column.Width = Unit.Percentage(5);
+                column.EditFormSettings.Visible = DefaultBoolean.False;
+            });
+
+            // Show allocate column only if partial approved request
+            if (ViewData["PaProduct"] != null)
+            {
+                 settings.Columns.Add(column =>
+                 {
+                     column.FieldName = "ProdAlloc";
+                     column.Caption = Supervisor.RGridAlloc;
+                     column.Width = Unit.Percentage(5);
+                     column.EditFormSettings.Visible = DefaultBoolean.False;
+                 });
+            }
+
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "ProdRecom";
+                column.Caption = Supervisor.RGridRecom;
+                column.Width = Unit.Percentage(15);
+
+                totalStock = Convert.ToDecimal(((ShelterRequest)Model[0]).TotalStock);
+
+                if (totalStock > 0)
+                {
+                    column.ColumnType = MVCxGridViewColumnType.SpinEdit;
+                    var seProperties = column.PropertiesEdit as SpinEditProperties;
+                    if (seProperties == null) return;
+
+                    seProperties.NumberType = SpinEditNumberType.Float;
+                    seProperties.Increment = 1m;
+                    seProperties.MinValue = 1m;
+                    seProperties.MaxValue = totalStock;
+
+                    // Events
+                    seProperties.ClientSideEvents.KeyUp = "OnSpinEditKeyUp";
+                    seProperties.ClientSideEvents.Validation = "OnSpinEditValidation";
+                }
+                else
+                {
+                    column.EditFormSettings.Visible = DefaultBoolean.False;
+                }
+
+            });
+
+            // Command buttons for Update and Cancel
+            settings.SettingsCommandButton.UpdateButton.ButtonType = GridViewCommandButtonType.Image;
+            settings.SettingsCommandButton.UpdateButton.Image.Url = "~/Content/Images/Common/GridUpdate.png";
+            settings.SettingsCommandButton.CancelButton.ButtonType = GridViewCommandButtonType.Image;
+            settings.SettingsCommandButton.CancelButton.Image.Url = "~/Content/Images/Common/GridCancel.png";
+
+            // Events
+            settings.HtmlRowPrepared = (sender, e) =>
+            {
+                if (ViewData["Status"] != null && totalStock > 0)
+                {
+                    e.Row.ToolTip = string.Format(Supervisor.RGridTooltip, e.GetValue("Name"));
+                }
+            };
+
+            // Show error message in footer row
+            if (TempData["DeleteErrorMessage"] != null)
+            {
+                settings.Settings.ShowFooter = true;
+                settings.Styles.Footer.Width = Unit.Percentage(90);
+                settings.Styles.Footer.CssClass = "dxgvDeletingErrorRow_Aqua";
+                settings.SetFooterRowTemplateContent(c => Html.ViewContext.Writer.Write((string)TempData["ErrorMessage"]));
+            }
+            else
+                settings.Settings.ShowFooter = false;
+
+        });
+
+    if (TempData["ErrorMessage"] != null)
+    {
+        grid.SetEditErrorText((string)TempData["ErrorMessage"]);
+    }
+}
+
+@grid.Bind(Model).GetHtml()

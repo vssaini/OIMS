@@ -1,0 +1,102 @@
+﻿@*----- Requestor Request Details -----*@
+@model OIMS.Models.Requestor.RequestDetailModel
+
+@if (Model != null)
+{
+    <div class="item-box divBoxWidth">
+        <div class="headerBar">
+            <span>@Requestor.Req_Id @Model.RequestId</span>
+        </div>
+        <div id="itemBox" class="data">
+            <div class="control-group msgDiv">
+                <p><span class="padRight10">@Requestor.Req_Status</span>@Model.RequestStatus</p>
+                <p><span class="padRight10">@Requestor.Req_Date</span>@string.Format("{0:dd-MMM-yyyy}", Model.RequestDate)</p>
+                <p>
+                    <span class="padRight10">@Requestor.Req_UpdateBy</span>
+
+                    @if (Model.UpdatorName != null)
+                    {
+                        @Model.UpdatorName
+                    }
+                    else
+                    {
+                        @:@Requestor.Req_NameNA
+                                                                                                                    }
+                </p>
+                <p>
+                    <span class="padRight10">@Requestor.Req_UpdateDate</span>
+
+                    @if (Model.UpdateDate != null)
+                    {
+                        @: @string.Format("{0:dd-MMM-yyyy}", Model.UpdateDate)
+                }
+                    else
+                    {
+                        @: @Requestor.Req_DateNA
+                }
+                </p>
+                <hr />
+
+                @if (Model.Products.Any())
+                {
+                    <p class="msgHead">@Html.LabelFor(m => m.Products, new { @class = "inline" }):</p>
+                    
+                    <ol>
+                        @foreach (var p in Model.Products)
+                        {
+                            <li><span>@p.Name </span>
+                                <br />
+                                <span>@Requestor.Req_Detail_Request @string.Concat(p.Count, "x")</span>
+                                @if (p.ProdRecom != null)
+                                {
+                                    <br />
+                                    <span>@Requestor.Req_Detail_Recommend @string.Concat(p.ProdRecom, "x")</span> 
+                                }
+
+                                @if (p.ProdAlloc != null)
+                                {
+                                    <br />
+                                    <span>Allocated: @string.Concat(p.ProdAlloc, "x")</span>
+                                }
+                            </li>
+                        }
+                    </ol>
+                }
+
+                @if (Model.Items.Any())
+                {
+                    <p class="msgHead">@Html.LabelFor(m => m.Items, new { @class = "inline" }):</p>
+                    
+                    <ol>
+                        @foreach (var i in Model.Items)
+                        {
+                            <li><span>@i.Name</span><br />
+                                <span>@Requestor.Req_Detail_Request @string.Concat(i.Count, "x")</span>
+
+                                @if (i.ItemRecom != null)
+                                {
+                                    <br />
+                                    <span>@Requestor.Req_Detail_Recommend @string.Concat(i.ItemRecom, "x")</span>
+                                }
+
+                                @if (i.ItemAlloc != null)
+                                {
+                                    <br />
+                                    <span>Allocated: @string.Concat(i.ItemAlloc, "x")</span> 
+                                }
+                            </li>
+                        }
+                    </ol>
+                }
+
+                @if (Model.Messages != null)
+                {
+                    <p class="msgHead">@Html.LabelFor(m => m.Messages, new { @class = "inline" }):</p>
+                }
+            </div>
+        </div>
+
+    </div>
+
+}
+

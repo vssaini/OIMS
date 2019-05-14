@@ -1,0 +1,47 @@
+﻿@model OIMS.Models.ReportsModel
+@{
+    var ajaxOptions = new AjaxOptions
+                          {
+                              UpdateTargetId = "reportContent",
+                              OnBegin = "ReportBegin",
+                              OnSuccess = "ReportSuccess",
+                              OnFailure = "ReportFailure"
+                          };
+}
+
+@using (Ajax.BeginForm("ReportPost", "Supervisor", null, ajaxOptions, new { id = "frmReport" }))
+{
+    <h2 class="h2Reports">@Supervisor.TabReports</h2>
+    
+    <div id="reportBox">
+        <span class="padRight10">Show report for:</span>
+        @Html.DropDownListFor(m => m.Category, Model.Categories, new { @class = "stsWid" })
+        
+        @Html.DropDownListFor(m => m.ShelterId, Model.Shelters, new { @class = "stsWid" })
+
+        @Html.TextBoxFor(m => m.SearchParam, new { placeholder = " Containing words (Default 'All')", style="display:none" })
+        <button type="submit" id="btnShowReport" class="btn valign-top">
+            <i class="icon-play-circle"></i>&nbsp;@Supervisor.RBtnGo
+        </button>
+    </div>
+
+    <div id="reportContent" class="padTop25">
+       @* @Html.Partial("Report/_ReportContent", Model)*@
+    </div>
+}
+
+@Html.DevExpress().LoadingPanel(
+        settings =>
+        {
+            settings.Name = "ReportLoader";
+            settings.Modal = true;
+            settings.ContainerElementID = "reportBox";
+
+            // Layout
+            settings.Theme = "ClinicalStudyTheme";
+            settings.Text = Supervisor.RLoader;
+
+        }
+    ).GetHtml()
+
+@Scripts.Render("~/bundles/oims-s-reports")

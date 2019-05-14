@@ -1,0 +1,45 @@
+﻿@model OIMS.Models.Requestor.CartModel
+
+<div class="shopbar-flyout-inner">
+    
+    <div class="no-items muted @(Model.TotalProducts > 0 ? "hide" : "")">
+        <span>@Requestor.Sb_NoShelter</span>
+    </div>
+    @if (Model.TotalProducts > 0)
+    {
+        <ul class="items unstyled">
+            @for (int i = 0, length = Model.CartStuffs.Count; i < length; i++)
+            {
+                var item = Model.CartStuffs[i];
+
+                <li class="item clearfix alpha">
+                    <div class="data pull-left">
+                        <p class="name padRight10">@item.ItemName</p>
+                    </div>
+                    <div class="quantity pull-right">
+                        <b>@(item.Quantity)<span class="times">x</span></b>
+                    </div>
+                    <a class="remove ajax-cart-link" 
+                       href="#"
+                       data-href='@Url.Action("DeleteCartItem", "Requestor", new { cartItemId = item.CartId })' 
+                       data-name="@item.ItemName"
+                       data-type="cart"
+                       data-action="remove" 
+                       title="@Requestor.Sb_Btn_Remove">
+                        <i class="icon-trash"></i>
+                    </a>
+                </li>
+            }
+        </ul>
+        
+        <div class="buttons clearfix">
+            @{ var checkoutUrl = Url.Action("SaveCartStuffs", "Requestor"); }
+
+            <a class="btn btn-primary btn-small pull-right save-cart-link"  data-type="cart" data-action="save" href="@checkoutUrl">@Requestor.Sb_Btn_Submit&nbsp;
+                <i class="icon-caret-right"></i>
+            </a>
+
+        </div>
+    }
+</div>
+

@@ -1,0 +1,168 @@
+﻿/* Credit for Icons (most of them) goes to - Momenticons - http://momentumdesignlab.com */
+
+h2 {
+    font-family: 'Segoe UI Light','Segoe UI',Arial,Helvetica,'sans-serif' !important;
+    color: #3a87ad !important;
+    padding-left: 45px !important;
+    line-height: 40px !important;
+    font-weight: 300 !important;
+}
+
+.h2NewUser {
+    background: url('Images/Supervisor/IconNewUser.png') bottom left no-repeat;
+}
+
+.h2Users {
+    background: url('Images/Supervisor/IconUsers.png') bottom left no-repeat;
+}
+
+.h2NewVendor {
+    background: url('Images/Supervisor/IconNewVendor.png') bottom left no-repeat;
+}
+
+.h2Vendors {
+    background: url('Images/Supervisor/IconVendors.png') bottom left no-repeat;
+}
+
+.h2Items {
+    background: url('Images/Supervisor/IconItems.png') bottom left no-repeat;
+}
+
+.h2NewItem {
+    background: url('Images/Supervisor/IconNewItem.png') bottom left no-repeat;
+}
+
+.h2Logs {
+    background: url('Images/Supervisor/IconLogs.png') bottom left no-repeat;
+}
+
+.h2NewLog {
+    background: url('Images/Supervisor/IconNewLog.png') bottom left no-repeat;
+}
+
+.h2Requests {
+    background: url('Images/Supervisor/IconRequests.png') bottom left no-repeat;
+}
+
+.h2NewShelter {
+    background: url('Images/Supervisor/IconNewProduct.png') bottom left no-repeat;
+}
+
+.h2Shelters {
+    background: url('Images/Supervisor/IconProducts.png') bottom left no-repeat;
+}
+
+.h2Reports {
+    background: url('Images/Supervisor/IconReports.png') bottom left no-repeat;
+}
+
+.control-group {
+    margin-bottom: 20px;
+}
+
+fieldset > legend {
+    font-family: 'Segoe UI Light','Segoe UI',Arial,Helvetica,'sans-serif';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.control-label {
+    float: left;
+    width: 140px;
+    padding-top: 5px;
+    text-align: left;
+}
+
+.controls {
+    margin-left: 180px;
+}
+
+.marginRight5 {
+    margin-right: 5px;
+}
+
+#pass-info.weakpass {
+    color: #cd090f;
+    text-shadow: 1px 1px 1px #FFF;
+}
+
+#pass-info.goodpass {
+    color: #51926E;
+    text-shadow: 1px 1px 1px #FFF;
+}
+
+.subGridHead {
+    font-family: 'Segoe UI',Arial,Helvetica,'sans-serif' !important;
+    color: #4390df !important;
+    font-size: 12px !important;
+    font-weight: bold;
+}
+
+.dxgvDeletingErrorRow_Aqua {
+    background-color: #F3D6D6 !important;
+    color: #BA1717;
+}
+
+.qtyWid {
+    width: 80px;
+}
+
+.roleWid {
+    width: 220px;
+}
+
+.dxcheckbox {
+    text-align: center !important;
+}
+
+.divLeft {
+    width: 53%;
+    float: left;
+    min-height: 1px;
+    margin-right: 50px;
+}
+
+.divRight {
+    width: 33%;
+    margin-left: 5px;
+    float: left;
+    min-height: 1px;
+}
+
+.divBoxWidth {
+    width: 450px;
+}
+
+/*---Report---*/
+td.PageBorder_tlc {background-image:url(report/top-left-corner.png);}
+td.PageBorder_blc {background-image:url(report/bottom-left-corner.png);}
+td.PageBorder_trc {background-image:url(report/top-right-corner.png);}
+td.PageBorder_brc {background-image:url(report/bottom-right-corner.png);}
+td.PageBorder_t {background-image:url(report/top.png); background-repeat:repeat-x;}
+td.PageBorder_l {background-image:url(report/left.png); background-repeat:repeat-y;}
+td.PageBorder_b {background-image:url(report/bottom.png); background-repeat:repeat-x;}
+td.PageBorder_r {background-image:url(report/right.png); background-repeat:repeat-y;}
+
+.valign-top {
+    vertical-align: top;
+}
+
+#reportBox {
+    background-color: #f7f7f7;
+    padding: 5px;
+    padding-top: 10px;
+    border: solid 1px #68b3ec;
+    border-radius: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 58%;
+    margin-top: 20px;
+}
+
+.mrgLeft10 {
+    margin-left: 10px;
+}

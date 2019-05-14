@@ -1,0 +1,29 @@
+﻿CHANGES IN OIMS
+------------------
+
+This file record changes done to OIMS version for respective files. So that there is ease for deployment too.
+
+12-10-2014
+------------
+
+- Modified 'TrialExpired.cshtml' in Shared folder.
+- Modified 'SupervisorController' for fixing issue of 'Supervisor was not able to mark request Close'.
+- Modified 'HomeController" for setting 30 days time period from 01 Oct.
+- Modified 'web.conifg' to set session timeout period to 20
+- Modified 'Models\Supervisor\RequestDetailModel.cs' to re-code PossibleShelterStock.
+
+15-10-2014
+------------
+
+- Modified 'SupervisorController' for fixing showing shelter item's other details. Previously were missing.
+- Modified '_Items.cshtml' for Quantity part to remove enforcement of entering quantity.
+- Modified 'SupervisorController' for fixing 'ItemsPost' way of handling blank quantity.
+- Modified 'SupervisorController' for fixing bug of adding new items to exisiting shelter.
+
+20-10-2014
+-----------
+
+- Modified '_GridForItemsLog.cshtml' and '_GridForUsers.cshtml' for showing error message.
+- Extended trial date from 25th October to next 30 days.
+- Modified 'TrialExpired.cshtml' for setting date to 25th October.
+- Modified 'Grids' in Supervisor view.

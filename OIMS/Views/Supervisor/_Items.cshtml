@@ -1,0 +1,93 @@
+﻿@using OIMS.Global
+@using OIMS.Repository.Supervisor
+@model OIMS.Models.Supervisor.VendorsModel
+
+@{
+    var ajaxOptions = new AjaxOptions
+                          {
+                              UpdateTargetId = "itemContent",
+                              OnBegin = "ItemBegin",
+                              OnSuccess = "ItemSuccess",
+                              OnFailure = "ItemFailure"
+                          };
+}
+
+@using (Ajax.BeginForm("ItemPost", "Supervisor", null, ajaxOptions, new { id = "frmItem" }))
+{
+    <button id="btnShowNewItemDiv" class="btn pull-right">
+        <i class="sm-icon-tag-2"></i>&nbsp;<span id="newItemSpan">@Supervisor.IBtnNewItem</span>
+    </button>
+    
+    <div id="ItemsDiv">
+        <div id="NewItemDiv" style="display: none;">
+            <h2 class="h2NewItem">@Supervisor.Ih2</h2>
+
+            <div id="itemContent">
+                @Html.Partial("_Result")
+            </div>
+
+            <!--For remembering-->
+            <input id = "website-image-path" type = "hidden" value = '@string.Format("{0}Content/Images/", Application.RootUrl)' />
+
+            <fieldset>
+                <legend>@Supervisor.ILegdItems</legend>
+                <div class="control-group">
+                    <table id="itemsList">
+                        <tbody>
+                            <tr>
+                                <td class="padRight6">
+                                    <input type="text" id="ItemName_0" name="ItemName[0]" required="required" placeholder="Item name" autofocus="autofocus" />
+                                </td>
+                                <td class="padRight6">
+                                    <input type="text" id="Size_0" name="Size[0]" required="required" placeholder="Item size" />
+                                </td>
+                                <td class="padRight6">
+                                    <input type="text" id="Marking_0" name="Marking[0]" required="required" placeholder="Item marking" />
+                                </td>
+                                <td class="padRight6">
+                                    <input type="number" id="Quantity_0" name="Quantity[0]" min="0" step="0.1" placeholder="Quantity" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="control-group">
+                    <button id="btnNewItem" type="submit" class="btn" data-original-title="Add more items">
+                        <i class="icon-plus"></i>&nbsp;@Supervisor.IBtnAdd
+                    </button>
+                </div>
+            </fieldset>
+
+            <div class="control-group buttons">
+                <div class="controls">
+                    <button type="submit" id="btnSaveItem" class="btn btn-primary">
+                        <i class="icon-ok icon-white"></i>
+                        @Supervisor.IBtnSave
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="gridContent">
+            <h2 class="h2Items">@Supervisor.TabItems</h2>
+            @Html.Partial("Grid/_GridForItems", ItemRepository.Items)
+        </div>
+    </div>
+}
+
+@Html.DevExpress().LoadingPanel(
+        settings =>
+        {
+            settings.Name = "ItemLoader";
+            settings.Modal = true;
+            settings.ContainerElementID = "NewItemDiv";
+
+            // Layout
+            settings.Theme = "ClinicalStudyTheme";
+            settings.Text = Supervisor.ILoader;
+
+        }
+    ).GetHtml()
+
+
+@Scripts.Render("~/bundles/oims-s-items")

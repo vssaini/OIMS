@@ -1,0 +1,154 @@
+﻿/* Credit for Icons (most of them) goes to - Momenticons - http://momentumdesignlab.com */
+
+h2 {
+    font-family: 'Segoe UI Light','Segoe UI',Arial,Helvetica,'sans-serif' !important;
+    color: #3a87ad !important;
+    padding-left: 45px !important;
+    line-height: 40px !important;
+    font-weight: 300 !important;
+}
+
+.h2Requests {
+    background: url('Images/Manager/IconRequests.png') bottom left no-repeat;
+}
+
+.h2NewUser {
+    background: url('Images/Supervisor/IconNewUser.png') bottom left no-repeat;
+}
+
+.h2Users {
+    background: url('Images/Supervisor/IconUsers.png') bottom left no-repeat;
+}
+
+.h2NewShelter {
+    background: url('Images/Supervisor/IconNewProduct.png') bottom left no-repeat;
+}
+
+.h2Shelters {
+    background: url('Images/Supervisor/IconProducts.png') bottom left no-repeat;
+}
+
+.h2Reports {
+    background: url('Images/Supervisor/IconReports.png') bottom left no-repeat;
+}
+
+fieldset > legend {
+    font-family: 'Segoe UI Light','Segoe UI',Arial,Helvetica,'sans-serif';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.control-group {
+    margin-bottom: 20px;
+}
+
+.control-label {
+    float: left;
+    width: 140px;
+    padding-top: 5px;
+    text-align: left;
+}
+
+.controls {
+    margin-left: 180px;
+}
+
+.padRight6 {
+    padding-right: 6px;
+}
+
+.roleWid {
+    width: 220px;
+}
+
+ 
+/* ---------------------------------------------------------------------------------- 
+    iCheck plugin Minimal skin, blue - Credit goes to http://fronteed.com/iCheck/
+---------------------------------------------------------------------------------- */
+.icheckbox_minimal-blue,
+.iradio_minimal-blue {
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 18px;
+    height: 18px;
+    background: url(Images/blue.png) no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.icheckbox_minimal-blue {
+    background-position: 0 0;
+}
+    .icheckbox_minimal-blue.hover {
+        background-position: -20px 0;
+    }
+    .icheckbox_minimal-blue.checked {
+        background-position: -40px 0;
+    }
+    .icheckbox_minimal-blue.disabled {
+        background-position: -60px 0;
+        cursor: default;
+    }
+    .icheckbox_minimal-blue.checked.disabled {
+        background-position: -80px 0;
+    }
+
+.iradio_minimal-blue {
+    background-position: -100px 0;
+}
+    .iradio_minimal-blue.hover {
+        background-position: -120px 0;
+    }
+    .iradio_minimal-blue.checked {
+        background-position: -140px 0;
+    }
+    .iradio_minimal-blue.disabled {
+        background-position: -160px 0;
+        cursor: default;
+    }
+    .iradio_minimal-blue.checked.disabled {
+        background-position: -180px 0;
+    }
+
+/* HiDPI support */
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+    .icheckbox_minimal-blue,
+    .iradio_minimal-blue {
+        background-image: url(Images/blue@2x.png);
+        -webkit-background-size: 200px 20px;
+        background-size: 200px 20px;
+    }
+}
+
+/*---Report---*/
+td.PageBorder_tlc {background-image:url(report/top-left-corner.png);}
+td.PageBorder_blc {background-image:url(report/bottom-left-corner.png);}
+td.PageBorder_trc {background-image:url(report/top-right-corner.png);}
+td.PageBorder_brc {background-image:url(report/bottom-right-corner.png);}
+td.PageBorder_t {background-image:url(report/top.png); background-repeat:repeat-x;}
+td.PageBorder_l {background-image:url(report/left.png); background-repeat:repeat-y;}
+td.PageBorder_b {background-image:url(report/bottom.png); background-repeat:repeat-x;}
+td.PageBorder_r {background-image:url(report/right.png); background-repeat:repeat-y;}
+
+.valign-top {
+    vertical-align: top;
+}
+
+#reportBox {
+    background-color: #f7f7f7;
+    padding: 5px;
+    padding-top: 10px;
+    border: solid 1px #68b3ec;
+    border-radius: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 58%;
+    margin-top: 20px;
+}

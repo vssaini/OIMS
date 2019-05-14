@@ -1,0 +1,31 @@
+﻿@model OIMS.Models.ReportsModel
+@Html.DevExpress().ReportToolbar(settings =>
+{
+    settings.Name = "ReportToolbar";
+    settings.ReportViewerName = Model.ReportViewerName;
+    settings.Theme = Common.ReportTheme;
+}).GetHtml()
+
+<table style="margin-top: 20px">
+    <tr>
+        <td class="PageBorder_tlc" style="width: 10px; height: 10px;">
+            <div style="width: 10px; height: 10px; font-size: 1px"></div>
+        </td>
+        <td class="PageBorder_t"></td>
+        <td class="PageBorder_trc" style="width: 10px; height: 10px;">
+            <div style="width: 10px; height: 10px; font-size: 1px"></div>
+        </td>
+    </tr>
+    <tr>
+        <td class="PageBorder_l"></td>
+        <td style="background-color: white;">
+            @Html.Partial(Model.ReportUrl)
+        </td>
+        <td class="PageBorder_r"></td>
+    </tr>
+    <tr>
+        <td class="PageBorder_blc" style="width: 10px; height: 10px;"></td>
+        <td class="PageBorder_b"></td>
+        <td class="PageBorder_brc" style="width: 10px; height: 10px;"></td>
+    </tr>
+</table>

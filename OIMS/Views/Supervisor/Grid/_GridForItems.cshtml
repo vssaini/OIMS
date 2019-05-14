@@ -1,0 +1,99 @@
+﻿@{
+    var grid = Html.DevExpress().GridView(
+        settings =>
+        {
+            settings.Name = "gvItems";
+            settings.KeyFieldName = "ItemId";
+            settings.CallbackRouteValues = new { Controller = "Supervisor", Action = "GridForItems" };
+            settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Supervisor", Action = "UpdateGridForItems" };
+            settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Supervisor", Action = "DeleteGridForItems" };
+
+            // Styles
+            settings.Theme = Common.GlobalTheme;
+            settings.Width = Unit.Percentage(70);
+            settings.ControlStyle.Paddings.Padding = Unit.Pixel(0);
+            settings.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+            settings.ControlStyle.BorderBottom.BorderWidth = Unit.Pixel(1);
+            settings.Styles.CommandColumn.Spacing = Unit.Pixel(10);
+
+            // Show pager
+            settings.SettingsPager.Visible = true;
+            settings.SettingsPager.PageSize = 15;
+
+            // Show filter row for showing filtered data
+            settings.Settings.ShowFilterRow = false;
+
+            // Enable sorting by columns
+            settings.SettingsBehavior.AllowSort = true;
+
+            // Custom text for empty data row
+            settings.SettingsText.EmptyDataRow = Supervisor.IGridEmptyMsg;
+
+            // Edit and Delete settings
+            settings.SettingsEditing.Mode = GridViewEditingMode.EditForm;
+            settings.SettingsBehavior.ConfirmDelete = true;
+            settings.SettingsEditing.ShowModelErrorsForEditors = true;
+
+            // Configure grid's columns
+            settings.Columns.Add("ItemName").Caption = Supervisor.IGridItemName;
+            settings.Columns.Add("Size").Caption = Supervisor.IGridSize;
+            settings.Columns.Add("Marking").Caption = Supervisor.IGridMarking;
+            settings.Columns.Add("ItemQuantity").Caption = Supervisor.IGridQuantity;
+
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "UpdatedOn";
+                column.Caption = Supervisor.IGridUpdatedOn;
+                column.ReadOnly = true;
+                column.ColumnType = MVCxGridViewColumnType.DateEdit;
+                var dateProperties = column.PropertiesEdit as DateEditProperties;
+                if (dateProperties == null) return;
+
+                dateProperties.DisplayFormatString = Supervisor.IL_GridDateFormat;
+            });
+
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "Vendor";
+                column.Caption = Supervisor.IGridVendor;
+                column.ReadOnly = true;
+            });
+
+            // Show command columns
+            settings.CommandColumn.Caption = Supervisor.GridCommand;
+            settings.CommandColumn.Width = Unit.Percentage(9);
+            settings.CommandColumn.VisibleIndex = settings.Columns.Count;
+            settings.CommandColumn.Visible = true;
+            settings.CommandColumn.ShowEditButton = true;
+            settings.CommandColumn.ShowDeleteButton = true;
+
+            // Command buttons for Edit and Delete
+            settings.SettingsCommandButton.EditButton.ButtonType = GridViewCommandButtonType.Image;
+            settings.SettingsCommandButton.EditButton.Image.Url = "~/Content/Images/Common/GridEdit.png";
+            settings.SettingsCommandButton.DeleteButton.ButtonType = GridViewCommandButtonType.Image;
+            settings.SettingsCommandButton.DeleteButton.Image.Url = "~/Content/Images/Common/GridDelete.png";
+
+            // Command buttons for Update and Cancel
+            settings.SettingsCommandButton.UpdateButton.ButtonType = GridViewCommandButtonType.Image;
+            settings.SettingsCommandButton.UpdateButton.Image.Url = "~/Content/Images/Common/GridUpdate.png";
+            settings.SettingsCommandButton.CancelButton.ButtonType = GridViewCommandButtonType.Image;
+            settings.SettingsCommandButton.CancelButton.Image.Url = "~/Content/Images/Common/GridCancel.png";
+
+            // Show error message in footer row bcz the SetEditErrorText not worked
+            if (TempData["DeleteErrorMsg"] != null)
+            {
+                settings.Settings.ShowFooter = true;
+                settings.Styles.Footer.CssClass = "dxgvDeletingErrorRow_Aqua";
+                settings.SetFooterRowTemplateContent(c => Html.ViewContext.Writer.Write((string)TempData["DeleteErrorMsg"]));
+            }
+            else
+                settings.Settings.ShowFooter = false;
+        });
+
+    if (TempData["ErrorMessage"] != null)
+    {
+        grid.SetEditErrorText((string)TempData["ErrorMessage"]);
+    }
+}
+
+@grid.Bind(Model).GetHtml()

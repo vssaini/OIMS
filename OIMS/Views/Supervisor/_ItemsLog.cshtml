@@ -1,0 +1,91 @@
+﻿@using OIMS.Global
+@using OIMS.Repository.Supervisor
+@model OIMS.Models.Supervisor.VendorsModel
+
+@{
+    var ajaxOptions = new AjaxOptions
+                          {
+                              UpdateTargetId = "logContent",
+                              OnBegin = "LogBegin",
+                              OnSuccess = "LogSuccess",
+                              OnFailure = "LogFailure"
+                          };
+}
+
+@using (Ajax.BeginForm("ItemsLogPost", "Supervisor", null, ajaxOptions, new { id = "frmItemsLog" }))
+{
+    <button id="btnShowNewLogDiv" class="btn pull-right">
+        <i class="sm-icon-tag-2"></i>&nbsp;<span id="newItemSpan">Update item stock</span>
+    </button>
+    
+    <div id="LogsDiv">
+        <div id="NewLogDiv" style="display: none;">
+            <h2 class="h2NewLog">@Supervisor.IL_h2</h2>
+
+            <div id="logContent">
+                @Html.Partial("_Result")
+            </div>
+
+            <!--For remembering-->
+            <input id = "website-image-path" type = "hidden" value = '@string.Format("{0}Content/Images/", Application.RootUrl)' />
+
+            <fieldset>
+                <legend>@Supervisor.IL_LegdItemsLog</legend>
+                <div class="control-group">
+                    <table id="ItemsLogList">
+                        <tbody>
+                            <tr>
+                                <td class="padRight6">
+                                    <label class="control-label">@Supervisor.IL_CommonVendor:</label>&nbsp;
+                                    @Html.DropDownListFor(m => m.Vendor, Model.Vendors, new { @class = "ddlWid" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="padRight6">
+                                    @Html.LabelFor(m => m.Item, new { @class = "control-label" })&nbsp;
+                                    @Html.DropDownList("Item[0]", Model.Items, new { id = "Item_0", @class = "ddlWid" })&nbsp;&nbsp;<input type="number" id="Quantity_0" name="Quantity[0]" min=".1" step="0.1" required="required" placeholder="Quantity" class="qtyWid" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="control-group">
+                    <button id="btnNewItemLog" type="submit" class="btn" data-original-title="Create more item log">
+                        <i class="icon-plus"></i>&nbsp;@Supervisor.SBtnAdd
+                    </button>
+                </div>
+            </fieldset>
+
+            <div class="control-group buttons">
+                <div class="controls">
+                    <button type="submit" id="btnSaveItemLog" class="btn btn-primary">
+                        <i class="icon-ok icon-white"></i>
+                        @Supervisor.IL_BtnSave
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="logGridContent">
+            <h2 class="h2Logs">@Supervisor.IL_Logs</h2>
+            @Html.Partial("Grid/_GridForItemsLog", ItemsLogRepository.ItemsLog)
+        </div>
+    </div>
+}
+
+@Html.DevExpress().LoadingPanel(
+        settings =>
+        {
+            settings.Name = "LogLoader";
+            settings.Modal = true;
+            settings.ContainerElementID = "NewLogDiv";
+
+            // Layout
+            settings.Theme = "ClinicalStudyTheme";
+            settings.Text = Supervisor.ILoader;
+
+        }
+    ).GetHtml()
+
+
+@Scripts.Render("~/bundles/oims-s-itemsLog")

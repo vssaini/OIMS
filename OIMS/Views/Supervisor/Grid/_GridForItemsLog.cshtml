@@ -1,0 +1,122 @@
+﻿@using OIMS.Repository.Supervisor
+@{
+    var grid = Html.DevExpress().GridView(
+        settings =>
+        {
+            settings.Name = "gvItemsLog";
+            settings.KeyFieldName = "Id";
+            settings.CallbackRouteValues = new { Controller = "Supervisor", Action = "GridForItemsLog" };
+            settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Supervisor", Action = "UpdateGridForItemsLog" };
+            settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Supervisor", Action = "DeleteGridForItemsLog" };
+
+            // Styles
+            settings.Theme = Common.GlobalTheme;
+            settings.Width = Unit.Percentage(60);
+            settings.ControlStyle.Paddings.Padding = Unit.Pixel(0);
+            settings.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+            settings.ControlStyle.BorderBottom.BorderWidth = Unit.Pixel(1);
+            settings.Styles.CommandColumn.Spacing = Unit.Pixel(10);
+
+            // Show pager
+            settings.SettingsPager.Visible = true;
+            settings.SettingsPager.PageSize = 15;
+
+            // Show filter row for showing filtered data
+            settings.Settings.ShowFilterRow = false;
+
+            // Enable sorting by columns
+            settings.SettingsBehavior.AllowSort = true;
+
+            // Custom text for empty data row
+            settings.SettingsText.EmptyDataRow = Supervisor.IL_GridEmptyMsg;
+
+            // Edit and Delete settings
+            settings.SettingsEditing.Mode = GridViewEditingMode.EditForm;
+            settings.SettingsBehavior.ConfirmDelete = true;
+            settings.SettingsEditing.ShowModelErrorsForEditors = true;
+
+            // Configure grid's columns
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "ItemId";
+                column.Caption = Supervisor.SGridItemName;
+
+                column.ColumnType = MVCxGridViewColumnType.ComboBox;
+                var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+                if (comboBoxProperties == null) return;
+
+                comboBoxProperties.DataSource = ItemRepository.Items;
+                comboBoxProperties.TextField = "ItemName";
+                comboBoxProperties.ValueField = "ItemId";
+                comboBoxProperties.ValueType = typeof(int);
+            });
+
+            settings.Columns.Add("ItemQuantity").Caption = Supervisor.IL_GridQuantity;
+
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "VendorName";
+                column.Caption = Supervisor.IL_GridVendorName;
+
+                column.ColumnType = MVCxGridViewColumnType.ComboBox;
+                var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+                if (comboBoxProperties == null) return;
+
+                comboBoxProperties.DataSource = VendorRepository.Vendors;
+                comboBoxProperties.TextField = "Name";
+                comboBoxProperties.ValueField = "Name";
+                comboBoxProperties.ValueType = typeof(string);
+            });
+
+            settings.Columns.Add(column =>
+            {
+                column.FieldName = "EntryDate";
+                column.Caption = Supervisor.IL_GridLogDate;
+                
+                column.ColumnType = MVCxGridViewColumnType.DateEdit;
+                var dateProperties = column.PropertiesEdit as DateEditProperties;
+                if (dateProperties == null) return;
+
+                dateProperties.UseMaskBehavior = true;
+                dateProperties.EditFormat = EditFormat.Custom;
+                dateProperties.DisplayFormatString = Supervisor.IL_GridDateFormat;
+            });
+
+            // Show command columns
+            settings.CommandColumn.Caption = Supervisor.GridCommand;
+            settings.CommandColumn.Width = Unit.Percentage(9);
+            settings.CommandColumn.VisibleIndex = settings.Columns.Count;
+            settings.CommandColumn.Visible = true;
+            settings.CommandColumn.ShowEditButton = true;
+            settings.CommandColumn.ShowDeleteButton = true;
+
+            // Command buttons for Edit and Delete
+            settings.SettingsCommandButton.EditButton.ButtonType = GridViewCommandButtonType.Image;
+            settings.SettingsCommandButton.EditButton.Image.Url = "~/Content/Images/Common/GridEdit.png";
+            settings.SettingsCommandButton.DeleteButton.ButtonType = GridViewCommandButtonType.Image;
+            settings.SettingsCommandButton.DeleteButton.Image.Url = "~/Content/Images/Common/GridDelete.png";
+
+            // Command buttons for Update and Cancel
+            settings.SettingsCommandButton.UpdateButton.ButtonType = GridViewCommandButtonType.Image;
+            settings.SettingsCommandButton.UpdateButton.Image.Url = "~/Content/Images/Common/GridUpdate.png";
+            settings.SettingsCommandButton.CancelButton.ButtonType = GridViewCommandButtonType.Image;
+            settings.SettingsCommandButton.CancelButton.Image.Url = "~/Content/Images/Common/GridCancel.png";
+
+            // Show error message in footer row for 'Delete' part
+            if (TempData["DeleteErrorMsg"] != null)
+            {
+                settings.Settings.ShowFooter = true;
+                settings.Styles.Footer.CssClass = "dxgvDeletingErrorRow_Aqua";
+                settings.SetFooterRowTemplateContent(c => Html.ViewContext.Writer.Write((string)TempData["DeleteErrorMsg"]));
+            }
+            else
+                settings.Settings.ShowFooter = false;
+        });
+
+    if (TempData["ErrorMessage"] != null)
+    {
+        grid.SetEditErrorText((string)TempData["ErrorMessage"]);
+    }
+}
+
+@grid.Bind(Model).GetHtml()
